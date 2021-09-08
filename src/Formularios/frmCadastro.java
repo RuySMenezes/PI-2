@@ -190,6 +190,11 @@ public class frmCadastro extends javax.swing.JFrame {
         btnProduto.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnProduto.setText("Produto");
+        btnProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutoActionPerformed(evt);
+            }
+        });
 
         btnCliente.setBackground(new java.awt.Color(0, 0, 255));
         btnCliente.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -306,6 +311,13 @@ public class frmCadastro extends javax.swing.JFrame {
         tela.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnClienteActionPerformed
+
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+        // TODO add your handling code here:
+        frmCad_Produto tela = new frmCad_Produto();
+        tela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnProdutoActionPerformed
 
     /**
      * @param args the command line arguments
