@@ -5,18 +5,64 @@
  */
 package Formularios;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author natan
  */
 public class frmCad_Endereco extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmCad_Endereco
-     */
+    public Connection con;
+    public Statement st;
+    public ResultSet rs;
     public frmCad_Endereco() {
         initComponents();
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
+            st = (Statement)con.createStatement();
+            JOptionPane.showMessageDialog(null, "Conectado com sucesso");
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não, Conectado");
+        }
     }
+    
+     private void Limpar(){
+        txtBairro.setText("");
+        txtCep.setText("");
+        txtEndereco.setText("");
+        txtTaxa.setText("");
+                 
+     }
+     private void Sumir(){
+        txtEndereco.setVisible(false);
+        txtCep.setVisible(false);
+        txtBairro.setVisible(false);
+        txtTaxa.setVisible(false);
+        lblBairro.setVisible(false);
+        lblCep.setVisible(false);
+        lblEndereco.setVisible(false);
+        lblTaxa.setVisible(false);
+        lblCadEndereco.setVisible(false);
+        lblNovoEndere.setVisible(false);
+     }
+     private void Aparecer(){
+        txtBairro.setVisible(true);
+        txtCep.setVisible(true);
+        txtEndereco.setVisible(true);
+        txtTaxa.setVisible(true);
+        lblBairro.setVisible(true);
+        lblCep.setVisible(true);
+        lblEndereco.setVisible(true);
+        lblTaxa.setVisible(true);
+        lblCadEndereco.setVisible(true);
+        lblNovoEndere.setVisible(true);
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,29 +76,30 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pnlCima = new javax.swing.JPanel();
-        lblEndereco = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        lblTitulo = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
+        txtPesquisar = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
         pnlCentro = new javax.swing.JPanel();
         lblCadEndereco = new javax.swing.JLabel();
         lblNovoEndere = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblCep = new javax.swing.JLabel();
         lblBairro = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        ftxCep = new javax.swing.JFormattedTextField();
-        lblEndereco2 = new javax.swing.JLabel();
+        txtBairro = new javax.swing.JTextField();
+        txtCep = new javax.swing.JFormattedTextField();
+        lblEndereco = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
-        lblTaxaEntrega = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        lblTaxa = new javax.swing.JLabel();
+        txtTaxa = new javax.swing.JFormattedTextField();
         btnCadastrar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        lblPedidos3 = new javax.swing.JLabel();
-        lblCadastro3 = new javax.swing.JLabel();
-        lvlRelatorios3 = new javax.swing.JLabel();
-        lblCardapio3 = new javax.swing.JLabel();
+        lblPedidos = new javax.swing.JLabel();
+        lblCadastro = new javax.swing.JLabel();
+        lblRelatorios = new javax.swing.JLabel();
+        lblCardapio = new javax.swing.JLabel();
         lblTelaPrincipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,13 +131,18 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         pnlCima.setBackground(new java.awt.Color(255, 255, 255));
         pnlCima.setForeground(new java.awt.Color(255, 255, 255));
 
-        lblEndereco.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblEndereco.setForeground(new java.awt.Color(0, 102, 255));
-        lblEndereco.setText("ENDEREÇO");
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 102, 255));
+        lblTitulo.setText("ENDEREÇO");
 
-        jButton7.setBackground(new java.awt.Color(0, 153, 51));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("PESQUISAR");
+        btnPesquisar.setBackground(new java.awt.Color(0, 153, 51));
+        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisar.setText("PESQUISAR");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnNovo.setBackground(new java.awt.Color(0, 102, 204));
         btnNovo.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,6 +153,15 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             }
         });
 
+        try {
+            txtPesquisar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("CEP:");
+
         javax.swing.GroupLayout pnlCimaLayout = new javax.swing.GroupLayout(pnlCima);
         pnlCima.setLayout(pnlCimaLayout);
         pnlCimaLayout.setHorizontalGroup(
@@ -108,26 +169,29 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             .addGroup(pnlCimaLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(pnlCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEndereco)
+                    .addComponent(lblTitulo)
                     .addGroup(pnlCimaLayout.createSequentialGroup()
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(263, 263, 263)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCimaLayout.setVerticalGroup(
             pnlCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCimaLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(lblEndereco)
+                .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(pnlCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
-                .addGap(23, 23, 23))
+                    .addComponent(btnPesquisar)
+                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(22, 22, 22))
         );
 
         pnlCentro.setBackground(new java.awt.Color(255, 255, 255));
@@ -140,25 +204,25 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         lblNovoEndere.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNovoEndere.setText("Dados do endereço:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Cep:");
+        lblCep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCep.setText("Cep:");
 
         lblBairro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblBairro.setText("Bairro:");
 
         try {
-            ftxCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        lblEndereco2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblEndereco2.setText("Endereço:");
+        lblEndereco.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblEndereco.setText("Endereço:");
 
-        lblTaxaEntrega.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblTaxaEntrega.setText("Taxa de entrega:");
+        lblTaxa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTaxa.setText("Taxa de entrega:");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtTaxa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         btnCadastrar.setBackground(new java.awt.Color(0, 153, 51));
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -192,20 +256,20 @@ public class frmCad_Endereco extends javax.swing.JFrame {
                             .addGroup(pnlCentroLayout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addGroup(pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblTaxaEntrega)
-                                        .addComponent(lblEndereco2)
-                                        .addComponent(jLabel3)
+                                        .addComponent(lblTaxa)
+                                        .addComponent(lblEndereco)
+                                        .addComponent(lblCep)
                                         .addComponent(lblNovoEndere)
                                         .addComponent(lblBairro)
-                                        .addComponent(ftxCep, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCentroLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCentroLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 612, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,22 +285,22 @@ public class frmCad_Endereco extends javax.swing.JFrame {
                 .addGap(87, 87, 87)
                 .addComponent(lblNovoEndere)
                 .addGap(62, 62, 62)
-                .addComponent(jLabel3)
+                .addComponent(lblCep)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ftxCep, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblBairro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblEndereco2)
+                .addComponent(lblEndereco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTaxaEntrega)
+                .addComponent(lblTaxa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addGroup(pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,43 +310,43 @@ public class frmCad_Endereco extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblPedidos3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblPedidos3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
-        lblPedidos3.setText("Pedidos");
-        lblPedidos3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblPedidos3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblPedidos.setText("Pedidos");
+        lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblPedidos3MouseClicked(evt);
+                lblPedidosMouseClicked(evt);
             }
         });
 
-        lblCadastro3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCadastro3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
-        lblCadastro3.setText("Cadastro");
-        lblCadastro3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCadastro3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCadastro.setText("Cadastro");
+        lblCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCadastro3MouseClicked(evt);
+                lblCadastroMouseClicked(evt);
             }
         });
 
-        lvlRelatorios3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lvlRelatorios3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
-        lvlRelatorios3.setText("Relatórios");
-        lvlRelatorios3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lvlRelatorios3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblRelatorios.setText("Relatórios");
+        lblRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lvlRelatorios3MouseClicked(evt);
+                lblRelatoriosMouseClicked(evt);
             }
         });
 
-        lblCardapio3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCardapio3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
-        lblCardapio3.setText("Cardapio");
-        lblCardapio3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCardapio3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCardapio.setText("Cardapio");
+        lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCardapio3MouseClicked(evt);
+                lblCardapioMouseClicked(evt);
             }
         });
 
@@ -302,12 +366,12 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lvlRelatorios3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTelaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblCadastro3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblPedidos3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCardapio3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -316,13 +380,13 @@ public class frmCad_Endereco extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTelaPrincipal)
                 .addGap(195, 195, 195)
-                .addComponent(lblCardapio3)
+                .addComponent(lblCardapio)
                 .addGap(32, 32, 32)
-                .addComponent(lblPedidos3)
+                .addComponent(lblPedidos)
                 .addGap(26, 26, 26)
-                .addComponent(lblCadastro3)
+                .addComponent(lblCadastro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lvlRelatorios3)
+                .addComponent(lblRelatorios)
                 .addContainerGap(424, Short.MAX_VALUE))
         );
 
@@ -355,27 +419,27 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblPedidos3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPedidos3MouseClicked
+    private void lblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPedidosMouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_lblPedidos3MouseClicked
+    }//GEN-LAST:event_lblPedidosMouseClicked
 
-    private void lblCadastro3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastro3MouseClicked
+    private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
         // TODO add your handling code here:
         frmCadastro tela = new frmCadastro();
         tela.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_lblCadastro3MouseClicked
+    }//GEN-LAST:event_lblCadastroMouseClicked
 
-    private void lvlRelatorios3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lvlRelatorios3MouseClicked
+    private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_lvlRelatorios3MouseClicked
+    }//GEN-LAST:event_lblRelatoriosMouseClicked
 
-    private void lblCardapio3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCardapio3MouseClicked
+    private void lblCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCardapioMouseClicked
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_lblCardapio3MouseClicked
+    }//GEN-LAST:event_lblCardapioMouseClicked
 
     private void lblTelaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTelaPrincipalMouseClicked
         // TODO add your handling code here:
@@ -386,14 +450,55 @@ public class frmCad_Endereco extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-        
+        /*try{
+            
+            String cep, bairro, endereco, taxa;
+            cep = txtCep.getText();
+            bairro = txtBairro.getText();
+            endereco = txtEndereco.getText();
+            taxa = txtTaxa.getText().replaceAll(",", ".");
+            String minhasql = "insert into endereco (cep, bairro, nome, taxa) values ('"+cep+"','"+bairro+"','"+endereco+"',"+taxa+")";
+            st.executeUpdate(minhasql);
+            JOptionPane.showMessageDialog(null, "Registro gravado");
+        }catch(Exception e){
+            System.out.println(e);
+            
+            JOptionPane.showMessageDialog(null, "não gravado");
+        }*/
 
+        Limpar();
+        Sumir();
+        
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-        
+        Aparecer();
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+            String sql = "select * from endereco where cep = '"
+                   +txtPesquisar.getText()+"'";
+            rs = st.executeQuery(sql);
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Registro encontrado");
+                txtCep.setText(rs.getString("cep"));
+                txtBairro.setText(rs.getString("bairro"));
+                txtEndereco.setText(rs.getString("nome"));
+                txtTaxa.setText(rs.getString("taxa"));
+           }else{
+                JOptionPane.showMessageDialog(null, "Registro não existe");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Registro não existe");
+       }
+        txtPesquisar.setText("");
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,54 +539,31 @@ public class frmCad_Endereco extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JFormattedTextField ftxCep;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCadEndereco;
     private javax.swing.JLabel lblCadastro;
-    private javax.swing.JLabel lblCadastro1;
-    private javax.swing.JLabel lblCadastro2;
-    private javax.swing.JLabel lblCadastro3;
     private javax.swing.JLabel lblCardapio;
-    private javax.swing.JLabel lblCardapio1;
-    private javax.swing.JLabel lblCardapio2;
-    private javax.swing.JLabel lblCardapio3;
-    private javax.swing.JLabel lblCliente;
-    private javax.swing.JLabel lblCliente1;
-    private javax.swing.JLabel lblCliente2;
+    private javax.swing.JLabel lblCep;
     private javax.swing.JLabel lblEndereco;
-    private javax.swing.JLabel lblEndereco2;
-    private javax.swing.JLabel lblMenu;
-    private javax.swing.JLabel lblMenu1;
-    private javax.swing.JLabel lblMenu2;
     private javax.swing.JLabel lblNovoEndere;
     private javax.swing.JLabel lblPedidos;
-    private javax.swing.JLabel lblPedidos1;
-    private javax.swing.JLabel lblPedidos2;
-    private javax.swing.JLabel lblPedidos3;
-    private javax.swing.JLabel lblTaxaEntrega;
+    private javax.swing.JLabel lblRelatorios;
+    private javax.swing.JLabel lblTaxa;
     private javax.swing.JLabel lblTelaPrincipal;
-    private javax.swing.JLabel lvlRelatorios;
-    private javax.swing.JLabel lvlRelatorios1;
-    private javax.swing.JLabel lvlRelatorios2;
-    private javax.swing.JLabel lvlRelatorios3;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlCima;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JTextField txtEndereco;
+    private javax.swing.JFormattedTextField txtPesquisar;
+    private javax.swing.JFormattedTextField txtTaxa;
     // End of variables declaration//GEN-END:variables
 }
