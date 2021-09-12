@@ -32,10 +32,9 @@ public class frmTelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblCliente = new javax.swing.JLabel();
         lblPedidos = new javax.swing.JLabel();
         lblCadastro = new javax.swing.JLabel();
-        lvlRelatorios = new javax.swing.JLabel();
+        lblRelatorios = new javax.swing.JLabel();
         lblCardapio = new javax.swing.JLabel();
         lblMenu = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -52,16 +51,6 @@ public class frmTelaInicial extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
-        lblCliente.setText("Cliente");
-        lblCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblClienteMouseClicked(evt);
-            }
-        });
 
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
@@ -83,13 +72,13 @@ public class frmTelaInicial extends javax.swing.JFrame {
             }
         });
 
-        lvlRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lvlRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
-        lvlRelatorios.setText("Relatórios");
-        lvlRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lvlRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblRelatorios.setText("Relatórios");
+        lblRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lvlRelatoriosMouseClicked(evt);
+                lblRelatoriosMouseClicked(evt);
             }
         });
 
@@ -120,30 +109,27 @@ public class frmTelaInicial extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lvlRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(lblPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addComponent(lblMenu)
-                .addGap(122, 122, 122)
-                .addComponent(lblCliente)
-                .addGap(27, 27, 27)
+                .addGap(94, 94, 94)
                 .addComponent(lblCardapio)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(lblPedidos)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(lblCadastro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lvlRelatorios)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(lblRelatorios)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
@@ -214,11 +200,6 @@ public class frmTelaInicial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClienteMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_lblClienteMouseClicked
-
     private void lblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPedidosMouseClicked
         // TODO add your handling code here:
         
@@ -231,10 +212,10 @@ public class frmTelaInicial extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_lblCadastroMouseClicked
 
-    private void lvlRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lvlRelatoriosMouseClicked
+    private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_lvlRelatoriosMouseClicked
+    }//GEN-LAST:event_lblRelatoriosMouseClicked
 
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
         // TODO add your handling code here:
@@ -242,9 +223,7 @@ public class frmTelaInicial extends javax.swing.JFrame {
 
     private void lblCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCardapioMouseClicked
         // TODO add your handling code here:
-        frmCadastro tela = new frmCadastro();
-        tela.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_lblCardapioMouseClicked
 
     /**
@@ -290,9 +269,8 @@ public class frmTelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCardapio;
-    private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblPedidos;
-    private javax.swing.JLabel lvlRelatorios;
+    private javax.swing.JLabel lblRelatorios;
     // End of variables declaration//GEN-END:variables
 }

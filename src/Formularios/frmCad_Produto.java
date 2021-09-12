@@ -43,13 +43,11 @@ public class frmCad_Produto extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        lblCliente = new javax.swing.JLabel();
         lblPedidos = new javax.swing.JLabel();
         lblCadastro = new javax.swing.JLabel();
         lvlRelatorios = new javax.swing.JLabel();
         lblCardapio = new javax.swing.JLabel();
         lblMenu = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBebida = new javax.swing.JButton();
@@ -102,15 +100,6 @@ public class frmCad_Produto extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCliente.setText("Cliente");
-        lblCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblClienteMouseClicked(evt);
-            }
-        });
-
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblPedidos.setText("Pedidos");
         lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -148,18 +137,11 @@ public class frmCad_Produto extends javax.swing.JFrame {
         });
 
         lblMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblMenu.setText("Menu");
+        lblMenu.setText("Tela Principal");
         lblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMenuMouseClicked(evt);
-            }
-        });
-
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -174,31 +156,23 @@ public class frmCad_Produto extends javax.swing.JFrame {
                     .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(lblCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(80, 80, 80))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblMenu)
-                .addGap(122, 122, 122)
-                .addComponent(lblCliente)
-                .addGap(27, 27, 27)
+                .addGap(144, 144, 144)
                 .addComponent(lblCardapio)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(lblPedidos)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(lblCadastro)
                 .addGap(18, 18, 18)
                 .addComponent(lvlRelatorios)
-                .addGap(191, 191, 191)
-                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -424,18 +398,9 @@ public class frmCad_Produto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClienteMouseClicked
-        // TODO add your handling code here:
-        frmCadastro tela = new frmCadastro();
-        tela.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblClienteMouseClicked
-
     private void lblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPedidosMouseClicked
         // TODO add your handling code here:
-        frmCadastro tela = new frmCadastro();
-        tela.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_lblPedidosMouseClicked
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
@@ -447,28 +412,20 @@ public class frmCad_Produto extends javax.swing.JFrame {
 
     private void lvlRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lvlRelatoriosMouseClicked
         // TODO add your handling code here:
-        frmCadastro tela = new frmCadastro();
-        tela.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_lvlRelatoriosMouseClicked
 
     private void lblCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCardapioMouseClicked
         // TODO add your handling code here:
-        frmCadastro tela = new frmCadastro();
-        tela.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_lblCardapioMouseClicked
 
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblMenuMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         frmTelaInicial tela = new frmTelaInicial();
         tela.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_lblMenuMouseClicked
 
     private void btnBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBebidaActionPerformed
         // TODO add your handling code here:
@@ -568,7 +525,6 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnPizza;
     private javax.swing.JComboBox<String> cbxTipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
@@ -584,7 +540,6 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private javax.swing.JLabel lblCad;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCardapio;
-    private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblDado;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblMenu;
