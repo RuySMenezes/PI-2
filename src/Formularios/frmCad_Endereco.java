@@ -5,7 +5,9 @@
  */
 package Formularios;
 
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -27,12 +29,9 @@ public class frmCad_Endereco extends javax.swing.JFrame {
     public frmCad_Endereco() {
         initComponents();
         
-        this.setExtendedState(MAXIMIZED_BOTH);
-        this.show();
-        
-        
-       // this.setSize(1600,1024);
-        //this.setLocationRelativeTo(null);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        pegarResolucao(); 
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
@@ -44,6 +43,12 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         Listar();
     }
     
+    private void pegarResolucao() {
+        Toolkit t = Toolkit.getDefaultToolkit();
+        Dimension dimensao = t.getScreenSize();
+        this.setSize((dimensao.width + 5), (dimensao.height - 38));
+
+ }
      private void Listar(){
     try {
             DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();
