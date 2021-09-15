@@ -5,13 +5,13 @@
  */
 package Formularios;
 
+import java.awt.GridBagLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +27,10 @@ public class frmCad_Endereco extends javax.swing.JFrame {
     public frmCad_Endereco() {
         initComponents();
         
-        this.setSize(1600,1024);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.show();
+       // this.setSize(1600,1024);
+        //this.setLocationRelativeTo(null);
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
