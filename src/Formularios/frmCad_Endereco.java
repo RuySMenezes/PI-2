@@ -26,6 +26,8 @@ public class frmCad_Endereco extends javax.swing.JFrame {
     public ResultSet rs;
     public frmCad_Endereco() {
         initComponents();
+        
+        this.setSize(1600,1024);
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
