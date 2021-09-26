@@ -86,7 +86,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(503, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(582, 582, 582))
         );
@@ -101,6 +101,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblPedidos.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Pizza.png")); // NOI18N
         lblPedidos.setText("Pedidos");
         lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,6 +111,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         });
 
         lblCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCadastro.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\configure.png")); // NOI18N
         lblCadastro.setText("Cadastro");
         lblCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,6 +121,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         });
 
         lvlRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lvlRelatorios.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Graficos.png")); // NOI18N
         lvlRelatorios.setText("Relatórios");
         lvlRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lvlRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,6 +131,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         });
 
         lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCardapio.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Cardapio.png")); // NOI18N
         lblCardapio.setText("Cardapio");
         lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,7 +141,8 @@ public class frmCad_Produto extends javax.swing.JFrame {
         });
 
         lblMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblMenu.setText("Tela Principal");
+        lblMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Home.png")); // NOI18N
+        lblMenu.setText("Menu");
         lblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -327,7 +332,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jspDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 1155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
