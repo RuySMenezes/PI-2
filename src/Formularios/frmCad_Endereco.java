@@ -397,7 +397,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblPedidos.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Pizza.png")); // NOI18N
         lblPedidos.setText("Pedidos");
         lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -407,7 +407,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         });
 
         lblCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCadastro.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\CADASTRO.png")); // NOI18N
         lblCadastro.setText("Cadastro");
         lblCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -417,7 +417,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         });
 
         lblRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblRelatorios.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\GRAFICO.png")); // NOI18N
         lblRelatorios.setText("Relatórios");
         lblRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -427,7 +427,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         });
 
         lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCardapio.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Cardapio.png")); // NOI18N
         lblCardapio.setText("Cardapio");
         lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -437,7 +437,8 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         });
 
         lblTelaPrincipal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblTelaPrincipal.setText("Tela Principal");
+        lblTelaPrincipal.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Home.png")); // NOI18N
+        lblTelaPrincipal.setText("Menu");
         lblTelaPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblTelaPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

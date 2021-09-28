@@ -106,7 +106,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblPedidos.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Pizza.png")); // NOI18N
         lblPedidos.setText("Pedidos");
         lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,7 +116,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         });
 
         lblCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCadastro.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\CADASTRO.png")); // NOI18N
         lblCadastro.setText("Cadastro");
         lblCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,7 +126,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         });
 
         lvlRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lvlRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lvlRelatorios.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\GRAFICO.png")); // NOI18N
         lvlRelatorios.setText("Relatórios");
         lvlRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lvlRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,7 +136,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         });
 
         lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCardapio.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Cardapio.png")); // NOI18N
         lblCardapio.setText("Cardapio");
         lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,7 +146,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         });
 
         lblMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Home.png")); // NOI18N
         lblMenu.setText("Menu");
         lblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,6 +204,11 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblCep.setText("CEP:");
 
         txtNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
 
         lblComplemento.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblComplemento.setText("Complemento:");
@@ -493,6 +498,10 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         txtNumero.setVisible(true);
         txtTelefone.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments

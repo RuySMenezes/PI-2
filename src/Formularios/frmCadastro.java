@@ -46,7 +46,7 @@ public class frmCadastro extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblPedidos.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Pizza.png")); // NOI18N
         lblPedidos.setText("Pedidos");
         lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -56,7 +56,7 @@ public class frmCadastro extends javax.swing.JFrame {
         });
 
         lblCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCadastro.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\CADASTRO.png")); // NOI18N
         lblCadastro.setText("Cadastro");
         lblCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -66,7 +66,7 @@ public class frmCadastro extends javax.swing.JFrame {
         });
 
         lvlRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lvlRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lvlRelatorios.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\GRAFICO.png")); // NOI18N
         lvlRelatorios.setText("Relatórios");
         lvlRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lvlRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,7 +76,7 @@ public class frmCadastro extends javax.swing.JFrame {
         });
 
         lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblCardapio.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Cardapio.png")); // NOI18N
         lblCardapio.setText("Cardapio");
         lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,7 +86,7 @@ public class frmCadastro extends javax.swing.JFrame {
         });
 
         lblMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/C.PNG"))); // NOI18N
+        lblMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Home.png")); // NOI18N
         lblMenu.setText("Menu");
         lblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
