@@ -24,12 +24,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="1" attributes="0">
-          <Component id="jPanel1" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
-              <Component id="jPanel5" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel2" max="32767" attributes="0"/>
           </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -38,11 +38,8 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel2" max="32767" attributes="0"/>
                   <Component id="jPanel5" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jPanel2" min="-2" pref="695" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
-                  </Group>
               </Group>
           </Group>
       </Group>
@@ -115,13 +112,14 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblCardapio" min="-2" pref="193" max="-2" attributes="0"/>
-                              <Component id="lblTelaPrincipal" min="-2" pref="163" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblTelaPrincipal" min="-2" pref="163" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblCardapio" min="-2" pref="193" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -149,9 +147,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="1"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\natan\OneDrive\Documentos\GitHub\PI-2\src\Imagens\Pizza.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Pedidos"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor em Forma de M&#xe3;o"/>
@@ -165,9 +160,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="1"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\natan\OneDrive\Documentos\GitHub\PI-2\src\Imagens\CADASTRO.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastro"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -183,9 +175,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="1"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\natan\OneDrive\Documentos\GitHub\PI-2\src\Imagens\GRAFICO.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor em Forma de M&#xe3;o"/>
@@ -200,9 +189,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="1"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\natan\OneDrive\Documentos\GitHub\PI-2\src\Imagens\Cardapio.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Cardapio"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor em Forma de M&#xe3;o"/>
@@ -216,9 +202,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="1"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\natan\OneDrive\Documentos\GitHub\PI-2\src\Imagens\Home.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Menu"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -241,51 +224,58 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnCancelaBusca" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnCadNovoCliente" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnContinuaPed" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblControlPedidos" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblCliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblCodCliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="ftfNumTelefone" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblNumTelefone" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnPesquisa" min="-2" pref="90" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="txtCodCliente" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblNomeCliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNomeCliente" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblCep" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="ftfCep" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblComplemento" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblBairro" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblEndereco" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtEndereco" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
-                      <Component id="txtBairro" min="-2" pref="475" max="-2" attributes="0"/>
-                      <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblControlPedidos" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnCancelaBusca" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtComplemento" alignment="0" pref="233" max="32767" attributes="0"/>
-                                  <Component id="txtNumero" alignment="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCodCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="ftfNumTelefone" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lblNumTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnPesquisa" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="txtCodCliente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblNomeCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNomeCliente" alignment="0" min="-2" pref="363" max="-2" attributes="0"/>
+                              <Component id="lblCep" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ftfCep" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblComplemento" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblBairro" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEndereco" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEndereco" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
+                              <Component id="txtBairro" min="-2" pref="475" max="-2" attributes="0"/>
+                              <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtComplemento" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtNumero" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnCadNovoCliente" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnContinuaPed" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -294,7 +284,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblControlPedidos" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -303,10 +293,10 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnLimpar" pref="34" max="32767" attributes="0"/>
+                      <Component id="btnLimpar" max="32767" attributes="0"/>
                       <Component id="btnPesquisa" alignment="1" max="32767" attributes="0"/>
                       <Component id="txtBairro" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="ftfNumTelefone" alignment="0" max="32767" attributes="0"/>
+                      <Component id="ftfNumTelefone" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -333,18 +323,18 @@
                       <Component id="lblComplemento" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCep" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtComplemento" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="ftfCep" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+                  <EmptySpace pref="174" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelaBusca" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnCadNovoCliente" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnContinuaPed" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

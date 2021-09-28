@@ -16,6 +16,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
      */
     public frmPedido_Cliente() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -90,7 +91,6 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblPedidos.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Pizza.png")); // NOI18N
         lblPedidos.setText("Pedidos");
         lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,7 +100,6 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         });
 
         lblCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCadastro.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\CADASTRO.png")); // NOI18N
         lblCadastro.setText("Cadastro");
         lblCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,7 +109,6 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         });
 
         lblRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblRelatorios.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\GRAFICO.png")); // NOI18N
         lblRelatorios.setText("Relatórios");
         lblRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,7 +118,6 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         });
 
         lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCardapio.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Cardapio.png")); // NOI18N
         lblCardapio.setText("Cardapio");
         lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,7 +127,6 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         });
 
         lblTelaPrincipal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblTelaPrincipal.setIcon(new javax.swing.ImageIcon("C:\\Users\\natan\\OneDrive\\Documentos\\GitHub\\PI-2\\src\\Imagens\\Home.png")); // NOI18N
         lblTelaPrincipal.setText("Menu");
         lblTelaPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblTelaPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,10 +150,11 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                                 .addComponent(lblCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTelaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(lblTelaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,51 +244,56 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelaBusca)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCadNovoCliente)
+                .addGap(18, 18, 18)
+                .addComponent(btnContinuaPed)
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblControlPedidos)
-                    .addComponent(lblCliente)
-                    .addComponent(lblCodCliente)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ftfNumTelefone, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNumTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpar))
-                    .addComponent(txtCodCliente)
-                    .addComponent(lblNomeCliente)
-                    .addComponent(txtNomeCliente)
-                    .addComponent(lblCep)
-                    .addComponent(ftfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(101, 101, 101)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblComplemento)
-                    .addComponent(lblBairro)
-                    .addComponent(lblEndereco)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNumero)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCancelaBusca)
+                        .addContainerGap()
+                        .addComponent(lblControlPedidos))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCliente)
+                            .addComponent(lblCodCliente)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(ftfNumTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNumTelefone, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLimpar))
+                            .addComponent(txtCodCliente)
+                            .addComponent(lblNomeCliente)
+                            .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCep)
+                            .addComponent(ftfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblComplemento)
+                            .addComponent(lblBairro)
+                            .addComponent(lblEndereco)
+                            .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNumero)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtComplemento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                                .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCadNovoCliente)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnContinuaPed)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                                .addComponent(txtComplemento, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblControlPedidos)
-                .addGap(48, 48, 48)
+                .addGap(49, 49, 49)
                 .addComponent(lblCliente)
                 .addGap(43, 43, 43)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -299,10 +301,10 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                     .addComponent(lblBairro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBairro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftfNumTelefone))
+                    .addComponent(ftfNumTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodCliente)
@@ -323,27 +325,27 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblComplemento)
                     .addComponent(lblCep))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ftfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(176, 176, 176)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelaBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadNovoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnContinuaPed, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,10 +353,8 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE))))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -363,7 +363,9 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
 
     private void lblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPedidosMouseClicked
         // TODO add your handling code here:
-
+        frmPedido_Cliente tela = new frmPedido_Cliente();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblPedidosMouseClicked
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
