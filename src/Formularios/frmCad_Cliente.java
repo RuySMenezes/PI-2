@@ -426,7 +426,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
     private void lblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPedidosMouseClicked
         // TODO add your handling code here:
-        frmPedido_Cliente tela = new frmPedido_Cliente();
+        frmPedido_Sacola tela = new frmPedido_Sacola();
         tela.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblPedidosMouseClicked
