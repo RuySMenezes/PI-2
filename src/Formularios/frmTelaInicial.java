@@ -218,7 +218,9 @@ public class frmTelaInicial extends javax.swing.JFrame {
 
     private void lblCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCardapioMouseClicked
         // TODO add your handling code here:
-        
+        frmCardapio_Pesquisa tela = new frmCardapio_Pesquisa();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblCardapioMouseClicked
 
     /**
