@@ -5,36 +5,124 @@
  */
 package Formularios;
 
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ruy_s
  */
 public class frmCad_Cliente extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmCad_Cliente
-     */
-    public frmCad_Cliente() {
-        initComponents();
+    
+        public Connection con;
+        public Statement st;
+        public ResultSet rs;
+        public frmCad_Cliente() 
+        {initComponents();
+        
         setExtendedState(MAXIMIZED_BOTH);
-        lblNome.setVisible(false);
+     
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
+            st = (Statement)con.createStatement();
+            JOptionPane.showMessageDialog(null, "Conectado com sucesso");
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não, Conectado");
+        }
+        Listar();
+       
+    }
+         private void Listar(){
+    try {
+            DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM cliente";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                
+                String nome = (rs.getString("nome"));
+                String telefone = (rs.getString("telefone"));
+                String cep = (rs.getString("fk_cep_endereco"));
+                String bairro = (rs.getString("bairro"));
+                String endereco = (rs.getString("endereco"));
+                String numero = (rs.getString("numero"));
+                String complemento = (rs.getString("complemento"));
+                
+                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento});     
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+    
+    }
+     private void Limpar(){
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtCep.setText("");
+        txtEndereco.setText("");
+        txtNumero.setText("");
+        txtBairro.setText("");
+        txtComplemento.setText(""); 
+        
+     }
+     
+     private void Sumir(){
         txtNome.setVisible(false);
-        lblCad_Cliente.setVisible(false);
-        lblBairro.setVisible(false);
-        lblCep.setVisible(false);
-        lblComplemento.setVisible(false);
-        lblDado.setVisible(false);
-        lblEndereco.setVisible(false);
-        lblNumero.setVisible(false);
-        lblTelefone.setVisible(false);
-        txtBairro.setVisible(false);
+        txtTelefone.setVisible(false);
         txtCep.setVisible(false);
-        txtComplemento.setVisible(false);
         txtEndereco.setVisible(false);
         txtNumero.setVisible(false);
-        txtTelefone.setVisible(false);
-    }
-
+        txtBairro.setVisible(false);
+        txtComplemento.setVisible(false);
+        lblNome.setVisible(false);
+        lblTelefone.setVisible(false);
+        lblCep.setVisible(false);
+        lblEndereco.setVisible(false);
+        lblNumero.setVisible(false);
+        lblBairro.setVisible(false);
+        lblComplemento.setVisible(false);
+        lblCad_Cliente.setVisible(false);
+        lblDado.setVisible(false);
+    
+     }
+     private void Aparecer(){
+        txtNome.setVisible(true);
+        txtTelefone.setVisible(true);
+        txtCep.setVisible(true);
+        txtEndereco.setVisible(true);
+        txtNumero.setVisible(true);
+        txtBairro.setVisible(true);
+        txtComplemento.setVisible(true);
+        lblNome.setVisible(true);
+        lblTelefone.setVisible(true);
+        lblCep.setVisible(true);
+        lblEndereco.setVisible(true);
+        lblNumero.setVisible(true);
+        lblBairro.setVisible(true);
+        lblComplemento.setVisible(true);
+        lblCad_Cliente.setVisible(true);
+        lblDado.setVisible(true);
+ 
+     }
+        
+    /** ------------------------------------------------------------
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +144,6 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblCad_Cliente = new javax.swing.JLabel();
         lblDado = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
-        txtCep = new javax.swing.JTextField();
         lblCep = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         lblComplemento = new javax.swing.JLabel();
@@ -70,12 +157,13 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblTelefone = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        txtCep = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtEndereco = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -204,8 +292,6 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNome.setText("Nome:");
 
-        txtCep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         lblCep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblCep.setText("CEP:");
 
@@ -245,12 +331,12 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("EDITAR CADASTRO");
 
-        jButton5.setBackground(new java.awt.Color(0, 153, 51));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("CONCLUIR CADASTRO");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setBackground(new java.awt.Color(0, 153, 51));
+        btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrar.setText("CONCLUIR CADASTRO");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
 
@@ -258,15 +344,24 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("CANCELAR CADASTRO");
 
+        try {
+            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblDado))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,8 +381,8 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNumero)
                                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCep)))
+                                    .addComponent(lblCep)
+                                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblBairro)
@@ -300,15 +395,19 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addComponent(lblCad_Cliente))
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 118, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +416,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 .addComponent(lblCad_Cliente)
                 .addGap(30, 30, 30)
                 .addComponent(lblDado)
-                .addGap(37, 37, 37)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(lblTelefone)
@@ -326,7 +425,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEndereco)
@@ -343,12 +442,12 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
@@ -367,13 +466,19 @@ public class frmCad_Cliente extends javax.swing.JFrame {
             }
         });
 
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaActionPerformed(evt);
+            }
+        });
+
         jtEndereco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtEndereco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Telefone", "CEP", "Endereço", "Número", "Bairro", "Complemento"
+                "Nome", "Telefone", "CEP", "Bairro", "Endereço", "Número", "Complemento"
             }
         ));
         jtEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -399,7 +504,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -416,9 +521,9 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(35, 35, 35)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -455,45 +560,36 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+        try{
+            
+            String nome, telefone, cep, bairro, endereco, numero, complemento;
         
-        lblNome.setVisible(false);
-        txtNome.setVisible(false);
-        lblCad_Cliente.setVisible(false);
-        lblBairro.setVisible(false);
-        lblCep.setVisible(false);
-        lblComplemento.setVisible(false);
-        lblDado.setVisible(false);
-        lblEndereco.setVisible(false);
-        lblNumero.setVisible(false);
-        lblTelefone.setVisible(false);
-        txtBairro.setVisible(false);
-        txtCep.setVisible(false);
-        txtComplemento.setVisible(false);
-        txtEndereco.setVisible(false);
-        txtNumero.setVisible(false);
-        txtTelefone.setVisible(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+            nome = txtNome.getText();
+            telefone = txtTelefone.getText();
+            cep = txtCep.getText();
+            bairro = txtBairro.getText();
+            endereco = txtEndereco.getText();
+            numero = txtNumero.getText();
+            complemento = txtComplemento.getText();
+            
+            String sql = "insert into cliente (nome, telefone, fk_cep_endereco, bairro, endereco, numero, complemento) values ('"+nome+"','"+telefone+"','"+cep+"','"+bairro+"','"+endereco+"','"+numero+"','"+complemento+"')";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro gravado");
+        }catch(Exception e){
+            System.out.println(e);
+            
+            JOptionPane.showMessageDialog(null, "não gravado");
+        }
+
+        Listar();
+        Limpar();
+        Sumir();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
-        lblNome.setVisible(true);
-        txtNome.setVisible(true);
-        lblCad_Cliente.setVisible(true);
-        lblBairro.setVisible(true);
-        lblCep.setVisible(true);
-        lblComplemento.setVisible(true);
-        lblDado.setVisible(true);
-        lblEndereco.setVisible(true);
-        lblNumero.setVisible(true);
-        lblTelefone.setVisible(true);
-        txtBairro.setVisible(true);
-        txtCep.setVisible(true);
-        txtComplemento.setVisible(true);
-        txtEndereco.setVisible(true);
-        txtNumero.setVisible(true);
-        txtTelefone.setVisible(true);
+      Aparecer();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -534,8 +630,55 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
     private void jtEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEnderecoMouseClicked
         // TODO add your handling code here:
-
+        Aparecer();
+        txtNome.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 0).toString());
+        txtTelefone.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 1).toString());
+        txtCep.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 2).toString());
+        txtBairro.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 3).toString());
+        txtEndereco.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 4).toString());
+        txtNumero.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 5).toString());
+        txtComplemento.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 6).toString());
+        
     }//GEN-LAST:event_jtEnderecoMouseClicked
+
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+        
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM cliente WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR cep LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR telefone LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR endereco LIKE '%"+txtPesquisa.getText()+"%'";
+                    
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                
+                String nome = (rs.getString("nome"));
+                String telefone = (rs.getString("telefone"));
+                String cep = (rs.getString("cep"));
+                String bairro = (rs.getString("bairro"));
+                String endereco = (rs.getString("endereco"));
+                String numero = (rs.getString("numero"));
+                String complemento = (rs.getString("complemento"));
+               
+                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }                    
+    }//GEN-LAST:event_txtPesquisaActionPerformed
+
+    private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -573,9 +716,9 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -585,7 +728,6 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtEndereco;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCad_Cliente;
@@ -602,11 +744,12 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblRelatorios;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JTextField txtBairro;
-    private javax.swing.JTextField txtCep;
+    private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtPesquisa;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,33 +5,114 @@
  */
 package Formularios;
 
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author ruy_s
  */
 public class frmCad_Produto extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmCad_Produto
-     */
-    public frmCad_Produto() {
-        initComponents();
+   
+        public Connection con;
+        public Statement st;
+        public ResultSet rs;
+        public frmCad_Produto() 
+        {initComponents();
+        
         setExtendedState(MAXIMIZED_BOTH);
-        lblCad.setVisible(false);
-        lblDado.setVisible(false);
-        lblDescricao.setVisible(false);
-        lblNome.setVisible(false);
-        lblTipo.setVisible(false);
-        lblValor.setVisible(false);
-        lblValor2.setVisible(false);
-        txtDescricao.setVisible(false);
+       
+
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
+            st = (Statement)con.createStatement();
+            JOptionPane.showMessageDialog(null, "Conectado com sucesso");
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não, Conectado");
+        }
+        Listar();
+       
+    }
+         private void Listar(){
+    try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM pizza";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valorbroto = (rs.getString("valorbroto"));
+                String tipo = (rs.getString("tipo"));
+                String descricao = (rs.getString("descricao"));
+               
+               
+                modelo.addRow(new Object[]{codigo,nome,valor,valorbroto,tipo,descricao});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+    
+    }
+     private void Limpar(){
+        txtNome.setText("");
+        txtValor.setText("");
+        txtValor2.setText("");
+        txtDescricao.setText("");
+        txtTipo.setText("");
+       
+     }
+     
+     private void Sumir(){
         txtNome.setVisible(false);
         txtValor.setVisible(false);
         txtValor2.setVisible(false);
-        cbxTipo.setVisible(false);
-        jspDescricao.setVisible(false);
-    }
-
+        txtDescricao.setVisible(false);
+        txtTipo.setVisible(false);
+        lblNome.setVisible(false);
+        lblValor.setVisible(false);
+        lblValor2.setVisible(false);
+        lblDescricao.setVisible(false);
+        lblTipo.setVisible(false);
+        lblCad.setVisible(false);
+        lblDado.setVisible(false);
+ 
+     }
+     private void Aparecer(){
+        txtNome.setVisible(true);
+        txtValor.setVisible(true);
+        txtValor2.setVisible(true);
+        txtDescricao.setVisible(true);
+        txtTipo.setVisible(true);
+        lblNome.setVisible(true);
+        lblValor.setVisible(true);
+        lblValor2.setVisible(true);
+        lblDescricao.setVisible(true);
+        lblTipo.setVisible(true);
+        lblCad.setVisible(true);
+        lblDado.setVisible(true);
+        
+     }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,29 +133,29 @@ public class frmCad_Produto extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBebida = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtPesquisa = new javax.swing.JTextField();
         btnPizza = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtEndereco = new javax.swing.JTable();
+        jtPizza = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblCad = new javax.swing.JLabel();
         lblDado = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
         lblValor = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         lblDescricao = new javax.swing.JLabel();
         lblValor2 = new javax.swing.JLabel();
-        txtValor2 = new javax.swing.JTextField();
         lblTipo = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        cbxTipo = new javax.swing.JComboBox<>();
+        btnExcluir = new javax.swing.JButton();
         jspDescricao = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextPane();
+        txtValor = new javax.swing.JFormattedTextField();
+        txtValor2 = new javax.swing.JFormattedTextField();
+        txtTipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,6 +284,12 @@ public class frmCad_Produto extends javax.swing.JFrame {
             }
         });
 
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaActionPerformed(evt);
+            }
+        });
+
         btnPizza.setBackground(new java.awt.Color(0, 102, 204));
         btnPizza.setForeground(new java.awt.Color(255, 255, 255));
         btnPizza.setText("NOVA PIZZA");
@@ -212,21 +299,21 @@ public class frmCad_Produto extends javax.swing.JFrame {
             }
         });
 
-        jtEndereco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtEndereco.setModel(new javax.swing.table.DefaultTableModel(
+        jtPizza.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtPizza.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Valor", "Valor Broto", "Tipo"
+                "Código", "Nome do produto", "Valor", "Valor Broto", "Tipo", "Descrição"
             }
         ));
-        jtEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtPizza.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtEnderecoMouseClicked(evt);
+                jtPizzaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtEndereco);
+        jScrollPane1.setViewportView(jtPizza);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Pesquisar");
@@ -247,9 +334,9 @@ public class frmCad_Produto extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -259,7 +346,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -284,8 +371,6 @@ public class frmCad_Produto extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNome.setText("Nome da Pizza:");
 
-        txtValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         lblValor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblValor.setText("Valor:");
 
@@ -297,14 +382,17 @@ public class frmCad_Produto extends javax.swing.JFrame {
         lblValor2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblValor2.setText("Valor da broto:");
 
-        txtValor2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         lblTipo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTipo.setText("Tipo:");
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 0));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("EDITAR CADASTRO");
+        btnEditar.setBackground(new java.awt.Color(255, 153, 0));
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("EDITAR CADASTRO");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnCadastrar.setBackground(new java.awt.Color(0, 153, 51));
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -315,14 +403,28 @@ public class frmCad_Produto extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(204, 0, 0));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("CANCELAR CADASTRO");
-
-        cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salgada", "Doce" }));
+        btnExcluir.setBackground(new java.awt.Color(204, 0, 0));
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setText("EXCLUIR CADASTRO");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jspDescricao.setViewportView(txtDescricao);
+
+        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtValor2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtValor2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -337,41 +439,34 @@ public class frmCad_Produto extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(lblNome)
-                            .addGap(725, 725, 725))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblValor))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(lblValor2)
-                                            .addGap(250, 250, 250)
-                                            .addComponent(lblTipo)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 155, Short.MAX_VALUE)))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDescricao)
-                            .addComponent(jspDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(285, 285, 285))))
+                            .addComponent(jspDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblValor))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblValor2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTipo)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblNome))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -383,30 +478,34 @@ public class frmCad_Produto extends javax.swing.JFrame {
                 .addComponent(lblCad)
                 .addGap(16, 16, 16)
                 .addComponent(lblDado)
-                .addGap(35, 35, 35)
+                .addGap(33, 33, 33)
                 .addComponent(lblNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(14, 14, 14)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValor2)
-                    .addComponent(lblValor)
-                    .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTipo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblValor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblValor2)
+                            .addComponent(lblTipo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(12, 12, 12)
                 .addComponent(lblDescricao)
                 .addGap(18, 18, 18)
                 .addComponent(jspDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
                 .addComponent(jLabel3))
         );
@@ -453,30 +552,14 @@ public class frmCad_Produto extends javax.swing.JFrame {
         txtNome.setVisible(true);
         txtValor.setVisible(true);
         txtValor2.setVisible(false);
-        cbxTipo.setVisible(false);
+        txtTipo.setVisible(false);
         jspDescricao.setVisible(false);
         lblCad.setText("CADASTRO DE BEBIDA:");
         lblNome.setText("Nome da Bebida:");
         lblDado.setText("Dados da Bebida:");
-    }//GEN-LAST:event_btnBebidaActionPerformed
-
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
-        lblCad.setVisible(false);
-        lblDado.setVisible(false);
-        lblDescricao.setVisible(false);
-        lblNome.setVisible(false);
-        lblTipo.setVisible(false);
-        lblValor.setVisible(false);
-        lblValor2.setVisible(false);
-        txtDescricao.setVisible(false);
-        txtNome.setVisible(false);
-        txtValor.setVisible(false);
-        txtValor2.setVisible(false);
-        cbxTipo.setVisible(false);
-        jspDescricao.setVisible(false);
         
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+        Limpar();
+    }//GEN-LAST:event_btnBebidaActionPerformed
 
     private void btnPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPizzaActionPerformed
         // TODO add your handling code here:
@@ -491,11 +574,14 @@ public class frmCad_Produto extends javax.swing.JFrame {
         txtNome.setVisible(true);
         txtValor.setVisible(true);
         txtValor2.setVisible(true);
-        cbxTipo.setVisible(true);
+        txtTipo.setVisible(true);
         jspDescricao.setVisible(true);
         lblCad.setText("CADASTRO DE PIZZA:");
         lblNome.setText("Nome da Pizza:");
         lblDado.setText("Dados da Pizza:");
+        
+        Limpar();
+ 
     }//GEN-LAST:event_btnPizzaActionPerformed
 
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
@@ -530,10 +616,116 @@ public class frmCad_Produto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblRelatoriosMouseClicked
 
-    private void jtEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEnderecoMouseClicked
+    private void jtPizzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPizzaMouseClicked
         // TODO add your handling code here:
+        Aparecer();
+        txtNome.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 1).toString());
+        txtValor.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 2).toString());
+        txtValor2.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 3).toString());
+        txtTipo.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 4).toString());
+        txtDescricao.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 5).toString());
         
-    }//GEN-LAST:event_jtEnderecoMouseClicked
+    }//GEN-LAST:event_jtPizzaMouseClicked
+
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+         try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM pizza WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR tipo LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR valor LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valorbroto = (rs.getString("valorbroto"));
+                String tipo = (rs.getString("tipo"));
+                String descricao = (rs.getString("descricao"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor,valorbroto,tipo,descricao});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+    }//GEN-LAST:event_txtPesquisaActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+
+        try{
+            String nome, valor, valorbroto, tipo, descricao;
+            nome = txtNome.getText();
+            valor = txtValor.getText().replaceAll(",", ".");
+            valorbroto = txtValor2.getText().replaceAll(",", ".");
+            tipo = txtTipo.getText();
+            descricao = txtDescricao.getText();
+            String sql = "insert into pizza (nome, valor, valorbroto, tipo, descricao) values ('"+nome+"','"+valor+"','"+valorbroto+"','"+tipo+"','"+descricao+"')";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro gravado");
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não gravado");
+        }
+
+        Listar();
+        Limpar();
+        Sumir();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+         try{
+            
+            String sql = "DELETE FROM pizza where nome = '"+txtNome.getText()+"'";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro Deletedo");
+        }catch(Exception e){
+            System.out.println(e);
+            
+            JOptionPane.showMessageDialog(null, "não Deletado");
+        }
+         
+        Listar();
+        Limpar();
+        Sumir();
+         
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+     
+         try{
+            String nome, valor, valorbroto, tipo, descricao;
+            
+            nome = txtNome.getText();
+            valor = txtValor.getText().replaceAll(",", ".");
+            valorbroto = txtValor2.getText().replaceAll(",", ".");
+            tipo = txtTipo.getText();
+            descricao = txtDescricao.getText();
+            String sql = "UPDATE pizza SET valor = '"+valor+"',valorbroto = '"+valorbroto+"',tipo = '"+tipo+"', descricao = '"+descricao+"' where nome = '"+nome+"'";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro gravado");
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não gravado");
+        }
+
+        Listar();
+        Limpar();
+        Sumir();
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -573,10 +765,9 @@ public class frmCad_Produto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBebida;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPizza;
-    private javax.swing.JComboBox<String> cbxTipo;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -586,9 +777,8 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JScrollPane jspDescricao;
-    private javax.swing.JTable jtEndereco;
+    private javax.swing.JTable jtPizza;
     private javax.swing.JLabel lblCad;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCardapio;
@@ -603,7 +793,9 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private javax.swing.JLabel lblValor2;
     private javax.swing.JTextPane txtDescricao;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtValor;
-    private javax.swing.JTextField txtValor2;
+    private javax.swing.JTextField txtPesquisa;
+    private javax.swing.JTextField txtTipo;
+    private javax.swing.JFormattedTextField txtValor;
+    private javax.swing.JFormattedTextField txtValor2;
     // End of variables declaration//GEN-END:variables
 }

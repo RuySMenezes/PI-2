@@ -275,6 +275,11 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         lblBairro.setText("Bairro:");
 
         txtBairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtBairro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBairroActionPerformed(evt);
+            }
+        });
 
         try {
             txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
@@ -282,6 +287,11 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCepActionPerformed(evt);
+            }
+        });
 
         lblEndereco.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblEndereco.setText("Endereço:");
@@ -667,6 +677,14 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         tela.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblMenuMouseClicked
+
+    private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCepActionPerformed
+
+    private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBairroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBairroActionPerformed
 
     /**
      * @param args the command line arguments
