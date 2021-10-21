@@ -39,10 +39,10 @@ public class frmCad_Produto extends javax.swing.JFrame {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não, Conectado");
         }
-        Listar();
+        ListarP();
        
     }
-         private void Listar(){
+         private void ListarP(){
     try {
             DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
            modelo.setNumRows(0);
@@ -71,12 +71,38 @@ public class frmCad_Produto extends javax.swing.JFrame {
         }
     
     }
+         private void ListarB(){
+    try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM bebida";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+               
+               
+                modelo.addRow(new Object[]{codigo,nome,valor});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+    
+    }
      private void Limpar(){
         txtNome.setText("");
         txtValor.setText("");
         txtValor2.setText("");
         txtDescricao.setText("");
-        txtTipo.setText("");
+        txtCodigo.setText("");
        
      }
      
@@ -85,7 +111,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         txtValor.setVisible(false);
         txtValor2.setVisible(false);
         txtDescricao.setVisible(false);
-        txtTipo.setVisible(false);
+        txtCodigo.setVisible(false);
         lblNome.setVisible(false);
         lblValor.setVisible(false);
         lblValor2.setVisible(false);
@@ -93,14 +119,17 @@ public class frmCad_Produto extends javax.swing.JFrame {
         lblTipo.setVisible(false);
         lblCad.setVisible(false);
         lblDado.setVisible(false);
+        lblCodigo.setVisible(false);
+        cbxTipo.setVisible(false);
  
      }
      private void Aparecer(){
+         if(lblCad.getText().equals("CADASTRO DE PIZZA:")){ 
         txtNome.setVisible(true);
         txtValor.setVisible(true);
         txtValor2.setVisible(true);
         txtDescricao.setVisible(true);
-        txtTipo.setVisible(true);
+        txtCodigo.setVisible(true);
         lblNome.setVisible(true);
         lblValor.setVisible(true);
         lblValor2.setVisible(true);
@@ -108,7 +137,26 @@ public class frmCad_Produto extends javax.swing.JFrame {
         lblTipo.setVisible(true);
         lblCad.setVisible(true);
         lblDado.setVisible(true);
+        lblCodigo.setVisible(true);
+        cbxTipo.setVisible(true);
         
+     }else{
+             lblCad.setVisible(true);
+        lblDado.setVisible(true);
+        lblDescricao.setVisible(false);
+        lblNome.setVisible(true);
+        lblTipo.setVisible(false);
+        lblValor.setVisible(true);
+        lblValor2.setVisible(false);
+        txtDescricao.setVisible(false);
+        txtNome.setVisible(true);
+        txtValor.setVisible(true);
+        txtValor2.setVisible(false);
+        txtCodigo.setVisible(true);
+        jspDescricao.setVisible(false);
+        lblCodigo.setVisible(true);
+        cbxTipo.setVisible(false);
+         }
      }
     
     
@@ -155,7 +203,9 @@ public class frmCad_Produto extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextPane();
         txtValor = new javax.swing.JFormattedTextField();
         txtValor2 = new javax.swing.JFormattedTextField();
-        txtTipo = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        lblCodigo = new javax.swing.JLabel();
+        cbxTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -420,11 +470,19 @@ public class frmCad_Produto extends javax.swing.JFrame {
         txtValor2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         txtValor2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtTipo.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.setEditable(false);
+        txtCodigo.setEnabled(false);
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTipoActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
+
+        lblCodigo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCodigo.setText("Código:");
+
+        cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salgada", "Doce" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -439,7 +497,6 @@ public class frmCad_Produto extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,12 +510,22 @@ public class frmCad_Produto extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblValor2))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTipo)
-                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblNome))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblTipo))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNome))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCodigo)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(303, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -479,9 +546,13 @@ public class frmCad_Produto extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(lblDado)
                 .addGap(33, 33, 33)
-                .addComponent(lblNome)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(lblCodigo))
                 .addGap(14, 14, 14)
-                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -495,7 +566,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(12, 12, 12)
                 .addComponent(lblDescricao)
                 .addGap(18, 18, 18)
@@ -552,13 +623,16 @@ public class frmCad_Produto extends javax.swing.JFrame {
         txtNome.setVisible(true);
         txtValor.setVisible(true);
         txtValor2.setVisible(false);
-        txtTipo.setVisible(false);
+        txtCodigo.setVisible(true);
         jspDescricao.setVisible(false);
+        lblCodigo.setVisible(true);
+        cbxTipo.setVisible(false);
         lblCad.setText("CADASTRO DE BEBIDA:");
         lblNome.setText("Nome da Bebida:");
         lblDado.setText("Dados da Bebida:");
         
         Limpar();
+        ListarB();
     }//GEN-LAST:event_btnBebidaActionPerformed
 
     private void btnPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPizzaActionPerformed
@@ -574,14 +648,16 @@ public class frmCad_Produto extends javax.swing.JFrame {
         txtNome.setVisible(true);
         txtValor.setVisible(true);
         txtValor2.setVisible(true);
-        txtTipo.setVisible(true);
+        txtCodigo.setVisible(true);
         jspDescricao.setVisible(true);
+        lblCodigo.setVisible(true);
+        cbxTipo.setVisible(true);
         lblCad.setText("CADASTRO DE PIZZA:");
         lblNome.setText("Nome da Pizza:");
         lblDado.setText("Dados da Pizza:");
         
         Limpar();
- 
+        ListarP();
     }//GEN-LAST:event_btnPizzaActionPerformed
 
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
@@ -619,16 +695,37 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private void jtPizzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPizzaMouseClicked
         // TODO add your handling code here:
         Aparecer();
+        if(lblCad.getText().equals("CADASTRO DE PIZZA:")){
+        int n = 0;
+        txtCodigo.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 0).toString());
         txtNome.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 1).toString());
         txtValor.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 2).toString());
         txtValor2.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 3).toString());
-        txtTipo.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 4).toString());
+        if(cbxTipo.getSelectedItem().toString() == "Salgada" ||cbxTipo.getSelectedItem().toString() == "Doce" ){
+             switch(jtPizza.getValueAt(jtPizza.getSelectedRow(), 4).toString()){
+            
+            case "Salgada":
+                n = 0;
+                break;
+            case "Doce":
+                n=1;
+                break;
+        }
+             cbxTipo.setSelectedIndex(n);
+        }
         txtDescricao.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 5).toString());
+        }else{
+            txtCodigo.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 0).toString());
+            txtNome.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 1).toString());
+            txtValor.setText(jtPizza.getValueAt(jtPizza.getSelectedRow(), 2).toString());
+        }
+        
         
     }//GEN-LAST:event_jtPizzaMouseClicked
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
-         try {
+        if(lblCad.getText().equals("CADASTRO DE PIZZA:")){
+        try {
             DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
            modelo.setNumRows(0);
            
@@ -656,72 +753,150 @@ public class frmCad_Produto extends javax.swing.JFrame {
         } catch (SQLException e) {
             System.err.println("Error: "+e);
         }
+        }else{
+            try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM bebida WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR valor LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
+        if(lblCad.getText().equals("CADASTRO DE PIZZA:")){
         try{
             String nome, valor, valorbroto, tipo, descricao;
             nome = txtNome.getText();
             valor = txtValor.getText().replaceAll(",", ".");
             valorbroto = txtValor2.getText().replaceAll(",", ".");
-            tipo = txtTipo.getText();
+            tipo = cbxTipo.getSelectedItem().toString();
             descricao = txtDescricao.getText();
             String sql = "insert into pizza (nome, valor, valorbroto, tipo, descricao) values ('"+nome+"','"+valor+"','"+valorbroto+"','"+tipo+"','"+descricao+"')";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Registro gravado");
+            ListarP();
         }catch(Exception e){
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não gravado");
+            ListarP();
+        }
+        }else{
+            try{
+            String nome, valor;
+            nome = txtNome.getText();
+            valor = txtValor.getText().replaceAll(",", ".");   
+            String sql = "insert into bebida (nome, valor) values ('"+nome+"','"+valor+"')";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro gravado");
+            ListarB();
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não gravado");
+            ListarB();
+        }
         }
 
-        Listar();
         Limpar();
         Sumir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-         try{
+        if(lblCad.getText().equals("CADASTRO DE PIZZA:")){ 
+        try{
             
-            String sql = "DELETE FROM pizza where nome = '"+txtNome.getText()+"'";
+            String sql = "DELETE FROM pizza where id = '"+txtCodigo.getText()+"'";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Registro Deletedo");
+            ListarP();
         }catch(Exception e){
             System.out.println(e);
             
             JOptionPane.showMessageDialog(null, "não Deletado");
+            ListarP();
         }
-         
-        Listar();
+        }else{
+          try{
+            
+            String sql = "DELETE FROM bebida where id = '"+txtCodigo.getText()+"'";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro Deletedo");
+            ListarB();
+        }catch(Exception e){
+            System.out.println(e);
+            
+            JOptionPane.showMessageDialog(null, "não Deletado");
+            ListarB();
+        }  
+        }
+
         Limpar();
         Sumir();
          
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-     
+     if(lblCad.getText().equals("CADASTRO DE PIZZA:")){ 
          try{
-            String nome, valor, valorbroto, tipo, descricao;
+            String nome, valor, valorbroto, tipo, descricao,codigo;
             
             nome = txtNome.getText();
             valor = txtValor.getText().replaceAll(",", ".");
             valorbroto = txtValor2.getText().replaceAll(",", ".");
-            tipo = txtTipo.getText();
+            tipo = cbxTipo.getSelectedItem().toString();
             descricao = txtDescricao.getText();
-            String sql = "UPDATE pizza SET valor = '"+valor+"',valorbroto = '"+valorbroto+"',tipo = '"+tipo+"', descricao = '"+descricao+"' where nome = '"+nome+"'";
+            codigo = txtCodigo.getText();
+            String sql = "UPDATE pizza SET nome = '"+nome+"',valor = '"+valor+"',valorbroto = '"+valorbroto+"',tipo = '"+tipo+"', descricao = '"+descricao+"' where id = '"+codigo+"'";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Registro gravado");
+            ListarP();
         }catch(Exception e){
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não gravado");
+            ListarP();
         }
+     }else{
+        try{
+            String nome, valor, codigo;
+            
+            nome = txtNome.getText();
+            valor = txtValor.getText().replaceAll(",", ".");
+            codigo = txtCodigo.getText();
+            String sql = "UPDATE bebida SET nome = '"+nome+"',valor = '"+valor+"' where id = '"+codigo+"'";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro gravado");
+            ListarB();
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não gravado");
+            ListarB();
+        } 
+     }
 
-        Listar();
         Limpar();
         Sumir();
         
@@ -768,6 +943,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPizza;
+    private javax.swing.JComboBox<String> cbxTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -782,6 +958,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private javax.swing.JLabel lblCad;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCardapio;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblDado;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblMenu;
@@ -791,10 +968,10 @@ public class frmCad_Produto extends javax.swing.JFrame {
     private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblValor;
     private javax.swing.JLabel lblValor2;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextPane txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
-    private javax.swing.JTextField txtTipo;
     private javax.swing.JFormattedTextField txtValor;
     private javax.swing.JFormattedTextField txtValor2;
     // End of variables declaration//GEN-END:variables

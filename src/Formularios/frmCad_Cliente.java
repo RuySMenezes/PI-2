@@ -6,9 +6,6 @@
 package Formularios;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -46,19 +43,17 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     try {
             DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();
            modelo.setNumRows(0);
-           
-            
-            String sql = "SELECT * FROM cliente";
+
+            String sql = "select * from cliente as C inner join endereco as E on C.fk_cep_endereco = E.cep;";
             
             rs = st.executeQuery(sql);
             while (rs.next()){
-                 
-                
+ 
                 String nome = (rs.getString("nome"));
                 String telefone = (rs.getString("telefone"));
                 String cep = (rs.getString("fk_cep_endereco"));
                 String bairro = (rs.getString("bairro"));
-                String endereco = (rs.getString("endereco"));
+                String endereco = (rs.getString("logradouro"));
                 String numero = (rs.getString("numero"));
                 String complemento = (rs.getString("complemento"));
                 
@@ -156,10 +151,11 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         txtEndereco = new javax.swing.JTextField();
         lblTelefone = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         txtCep = new javax.swing.JFormattedTextField();
+        btnLupa = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
@@ -310,7 +306,9 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblBairro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblBairro.setText("Bairro:");
 
+        txtBairro.setEditable(false);
         txtBairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtBairro.setEnabled(false);
 
         lblNumero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNumero.setText("Número:");
@@ -320,16 +318,23 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblEndereco.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblEndereco.setText("Endereço:");
 
+        txtEndereco.setEditable(false);
         txtEndereco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtEndereco.setEnabled(false);
 
         lblTelefone.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTelefone.setText("Telefone:");
 
         txtTelefone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 0));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("EDITAR CADASTRO");
+        btnEditar.setBackground(new java.awt.Color(255, 153, 0));
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("EDITAR CADASTRO");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnCadastrar.setBackground(new java.awt.Color(0, 153, 51));
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -340,9 +345,14 @@ public class frmCad_Cliente extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(204, 0, 0));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("CANCELAR CADASTRO");
+        btnExcluir.setBackground(new java.awt.Color(204, 0, 0));
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setText("EXCLUIR CADASTRO");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         try {
             txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
@@ -353,6 +363,15 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         txtCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCepActionPerformed(evt);
+            }
+        });
+
+        btnLupa.setBackground(new java.awt.Color(0, 102, 204));
+        btnLupa.setForeground(new java.awt.Color(255, 255, 255));
+        btnLupa.setText("lupa");
+        btnLupa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLupaActionPerformed(evt);
             }
         });
 
@@ -382,7 +401,10 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                                     .addComponent(lblNumero)
                                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblCep)
-                                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnLupa, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblBairro)
@@ -395,12 +417,12 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addComponent(lblCad_Cliente))
-                .addGap(0, 118, Short.MAX_VALUE))
+                .addGap(0, 43, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -425,7 +447,8 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLupa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEndereco)
@@ -445,8 +468,8 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
@@ -469,6 +492,11 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
+            }
+        });
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyPressed(evt);
             }
         });
 
@@ -509,7 +537,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
         );
         jPanel4Layout.setVerticalGroup(
@@ -564,17 +592,15 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             
-            String nome, telefone, cep, bairro, endereco, numero, complemento;
+            String nome, telefone, cep,  numero, complemento;
         
             nome = txtNome.getText();
             telefone = txtTelefone.getText();
             cep = txtCep.getText();
-            bairro = txtBairro.getText();
-            endereco = txtEndereco.getText();
             numero = txtNumero.getText();
             complemento = txtComplemento.getText();
             
-            String sql = "insert into cliente (nome, telefone, fk_cep_endereco, bairro, endereco, numero, complemento) values ('"+nome+"','"+telefone+"','"+cep+"','"+bairro+"','"+endereco+"','"+numero+"','"+complemento+"')";
+            String sql = "insert into cliente (nome, telefone, fk_cep_endereco, numero, complemento) values ('"+nome+"','"+telefone+"','"+cep+"','"+numero+"','"+complemento+"')";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Registro gravado");
         }catch(Exception e){
@@ -651,7 +677,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
             String sql = "SELECT * FROM cliente WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR cep LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR telefone LIKE '%"+txtPesquisa.getText()+"%'"
-                    +" OR endereco LIKE '%"+txtPesquisa.getText()+"%'";
+                    +" OR logradouro LIKE '%"+txtPesquisa.getText()+"%'";
                     
             
             rs = st.executeQuery(sql);
@@ -662,7 +688,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 String telefone = (rs.getString("telefone"));
                 String cep = (rs.getString("cep"));
                 String bairro = (rs.getString("bairro"));
-                String endereco = (rs.getString("endereco"));
+                String endereco = (rs.getString("logradouro"));
                 String numero = (rs.getString("numero"));
                 String complemento = (rs.getString("complemento"));
                
@@ -678,7 +704,110 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
     private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
         // TODO add your handling code here:
+        try {
+            
+            String sql = "SELECT logradouro, bairro FROM endereco WHERE cep = '"+txtCep.getText()+"'";
+
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                String endereco = (rs.getString("logradouro"));
+                String bairro = (rs.getString("bairro"));
+                
+                txtBairro.setText(bairro);
+                txtEndereco.setText(endereco);
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
     }//GEN-LAST:event_txtCepActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+            String nome, telefone, cep,  numero, complemento;
+        
+            nome = txtNome.getText();
+            telefone = txtTelefone.getText();
+            cep = txtCep.getText();
+            numero = txtNumero.getText();
+            complemento = txtComplemento.getText();
+            
+            //String sql = "UPDATE endereco SET "')";
+            //st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro gravado");
+        }catch(Exception e){
+            System.out.println(e);
+            
+            JOptionPane.showMessageDialog(null, "não gravado");
+        }
+
+        Listar();
+        Limpar();
+        Sumir();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        // TODO add your handling code here:
+         try {
+            DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM cliente WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR cep LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR telefone LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR logradouro LIKE '%"+txtPesquisa.getText()+"%'";
+                    
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                
+                String nome = (rs.getString("nome"));
+                String telefone = (rs.getString("telefone"));
+                String cep = (rs.getString("cep"));
+                String bairro = (rs.getString("bairro"));
+                String endereco = (rs.getString("logradouro"));
+                String numero = (rs.getString("numero"));
+                String complemento = (rs.getString("complemento"));
+               
+                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }                    
+     
+    }//GEN-LAST:event_txtPesquisaKeyPressed
+
+    private void btnLupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLupaActionPerformed
+        // TODO add your handling code here:
+         try {
+            
+            String sql = "SELECT logradouro, bairro FROM endereco WHERE cep = '"+txtCep.getText()+"'";
+
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                String endereco = (rs.getString("logradouro"));
+                String bairro = (rs.getString("bairro"));
+                
+                txtBairro.setText(bairro);
+                txtEndereco.setText(endereco);
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+    }//GEN-LAST:event_btnLupaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -717,9 +846,10 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnLupa;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

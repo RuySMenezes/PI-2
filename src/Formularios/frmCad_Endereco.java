@@ -65,7 +65,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
                 
                 String cep = (rs.getString("cep"));
                 String bairro = (rs.getString("bairro"));
-                String endereco = (rs.getString("nome"));
+                String endereco = (rs.getString("logradouro"));
                 String taxa = (rs.getString("taxa"));
                 
                 modelo.addRow(new Object[]{cep,bairro,endereco,taxa});      
@@ -214,6 +214,11 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
+            }
+        });
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyPressed(evt);
             }
         });
 
@@ -566,7 +571,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             bairro = txtBairro.getText();
             endereco = txtEndereco.getText();
             taxa = txtTaxa.getText().replaceAll(",", ".");
-            String sql = "insert into endereco (cep, bairro, nome, taxa) values ('"+cep+"','"+bairro+"','"+endereco+"',"+taxa+")";
+            String sql = "insert into endereco (cep, bairro, logradouro, taxa) values ('"+cep+"','"+bairro+"','"+endereco+"',"+taxa+")";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Registro gravado");
         }catch(Exception e){
@@ -597,7 +602,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             
             String sql = "SELECT * FROM endereco WHERE cep LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR bairro LIKE '%"+txtPesquisa.getText()+"%'"
-                    +" OR nome LIKE '%"+txtPesquisa.getText()+"%'";
+                    +" OR logradouro LIKE '%"+txtPesquisa.getText()+"%'";
             
             rs = st.executeQuery(sql);
             while (rs.next()){
@@ -605,7 +610,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
                 
                 String cep = (rs.getString("cep"));
                 String bairro = (rs.getString("bairro"));
-                String endereco = (rs.getString("nome"));
+                String endereco = (rs.getString("logradouro"));
                 String taxa = (rs.getString("taxa"));
                 
                 modelo.addRow(new Object[]{cep,bairro,endereco,taxa});      
@@ -636,7 +641,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             bairro = txtBairro.getText();
             endereco = txtEndereco.getText();
             taxa = txtTaxa.getText().replaceAll(",", ".");
-            String sql = "UPDATE endereco SET bairro = '"+bairro+"', nome = '"+endereco+"', taxa = '"+taxa+"' where cep = '"+cep+"'";
+            String sql = "UPDATE endereco SET bairro = '"+bairro+"', logradouro = '"+endereco+"', taxa = '"+taxa+"' where cep = '"+cep+"'";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Registro Editado");
         }catch(Exception e){
@@ -686,6 +691,37 @@ public class frmCad_Endereco extends javax.swing.JFrame {
     private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBairroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBairroActionPerformed
+
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        // TODO add your handling code here:
+         try {
+            DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM endereco WHERE cep LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR bairro LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR logradouro LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                
+                String cep = (rs.getString("cep"));
+                String bairro = (rs.getString("bairro"));
+                String endereco = (rs.getString("logradouro"));
+                String taxa = (rs.getString("taxa"));
+                
+                modelo.addRow(new Object[]{cep,bairro,endereco,taxa});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+                 
+    }//GEN-LAST:event_txtPesquisaKeyPressed
 
     /**
      * @param args the command line arguments
