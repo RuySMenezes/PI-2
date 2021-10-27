@@ -29,11 +29,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         initComponents();
         
         setExtendedState(MAXIMIZED_BOTH);
-        //setResizable(false);
-        /*setLocationRelativeTo(null);
-        pegarResolucao(); 
-       */
-       
+
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
@@ -44,13 +40,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         }
         Listar();
     }
-    
-   /*private void pegarResolucao() {
-        Toolkit t = Toolkit.getDefaultToolkit();
-        Dimension dimensao = t.getScreenSize();
-        this.setSize((dimensao.width + 5), (dimensao.height - 38));
 
- }*/
      private void Listar(){
     try {
             DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();

@@ -31,7 +31,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
-            JOptionPane.showMessageDialog(null, "Conectado com sucesso");
+            //JOptionPane.showMessageDialog(null, "Conectado com sucesso");
         }catch(Exception e){
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não, Conectado");
@@ -39,7 +39,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         Listar();
        
     }
-         private void Listar(){
+        private void Listar(){
     try {
             DefaultTableModel modelo = (DefaultTableModel) jtEndereco.getModel();
            modelo.setNumRows(0);
@@ -67,7 +67,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         }
     
     }
-     private void Limpar(){
+        private void Limpar(){
         txtNome.setText("");
         txtTelefone.setText("");
         txtCep.setText("");
@@ -75,10 +75,11 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         txtNumero.setText("");
         txtBairro.setText("");
         txtComplemento.setText(""); 
+        txtOb.setText("");
         
      }
      
-     private void Sumir(){
+        private void Sumir(){
         txtNome.setVisible(false);
         txtTelefone.setVisible(false);
         txtCep.setVisible(false);
@@ -95,9 +96,11 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblComplemento.setVisible(false);
         lblCad_Cliente.setVisible(false);
         lblDado.setVisible(false);
-    
+        lblOb.setVisible(false);
+        txtOb.setVisible(false);
+        btnLupa.setVisible(false);
      }
-     private void Aparecer(){
+        private void Aparecer(){
         txtNome.setVisible(true);
         txtTelefone.setVisible(true);
         txtCep.setVisible(true);
@@ -114,6 +117,9 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         lblComplemento.setVisible(true);
         lblCad_Cliente.setVisible(true);
         lblDado.setVisible(true);
+        lblOb.setVisible(true);
+        txtOb.setVisible(true);
+        btnLupa.setVisible(true);
  
      }
         
@@ -156,6 +162,9 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         txtCep = new javax.swing.JFormattedTextField();
         btnLupa = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtOb = new javax.swing.JTextPane();
+        lblOb = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
@@ -375,14 +384,36 @@ public class frmCad_Cliente extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setViewportView(txtOb);
+
+        lblOb.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblOb.setText("Observação:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDado)
+                    .addComponent(lblCad_Cliente))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOb)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,28 +446,15 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                                         .addComponent(lblComplemento))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addComponent(lblCad_Cliente))
-                .addGap(0, 43, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblDado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 70, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(lblCad_Cliente)
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addComponent(lblDado)
                 .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -465,13 +483,21 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblOb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(32, Short.MAX_VALUE))))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -537,7 +563,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addGap(28, 28, 28))
         );
         jPanel4Layout.setVerticalGroup(
@@ -616,6 +642,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
       Aparecer();
+      Limpar();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -760,8 +787,8 @@ public class frmCad_Cliente extends javax.swing.JFrame {
            modelo.setNumRows(0);
            
             
-            String sql = "SELECT * FROM cliente WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
-                    +" OR cep LIKE '%"+txtPesquisa.getText()+"%'"
+            String sql = "SELECT * FROM cliente as C inner join endereco as E on C.fk_cep_endereco = E.cep WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR fk_cep_endereco LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR telefone LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR logradouro LIKE '%"+txtPesquisa.getText()+"%'";
                     
@@ -858,6 +885,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtEndereco;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCad_Cliente;
@@ -870,6 +898,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNumero;
+    private javax.swing.JLabel lblOb;
     private javax.swing.JLabel lblPedidos;
     private javax.swing.JLabel lblRelatorios;
     private javax.swing.JLabel lblTelefone;
@@ -879,6 +908,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextPane txtOb;
     private javax.swing.JTextField txtPesquisa;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
