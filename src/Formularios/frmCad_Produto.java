@@ -34,7 +34,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
-            JOptionPane.showMessageDialog(null, "Conectado com sucesso");
+            //JOptionPane.showMessageDialog(null, "Conectado com sucesso");
         }catch(Exception e){
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não, Conectado");
@@ -42,7 +42,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         ListarP();
        
     }
-         private void ListarP(){
+        private void ListarP(){
     try {
             DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
            modelo.setNumRows(0);
@@ -71,7 +71,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         }
     
     }
-         private void ListarB(){
+        private void ListarB(){
     try {
             DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
            modelo.setNumRows(0);
@@ -97,7 +97,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         }
     
     }
-     private void Limpar(){
+        private void Limpar(){
         txtNome.setText("");
         txtValor.setText("");
         txtValor2.setText("");
@@ -106,7 +106,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
        
      }
      
-     private void Sumir(){
+        private void Sumir(){
         txtNome.setVisible(false);
         txtValor.setVisible(false);
         txtValor2.setVisible(false);
@@ -123,7 +123,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         cbxTipo.setVisible(false);
  
      }
-     private void Aparecer(){
+        private void Aparecer(){
          if(lblCad.getText().equals("CADASTRO DE PIZZA:")){ 
         txtNome.setVisible(true);
         txtValor.setVisible(true);
@@ -339,6 +339,11 @@ public class frmCad_Produto extends javax.swing.JFrame {
                 txtPesquisaActionPerformed(evt);
             }
         });
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyPressed(evt);
+            }
+        });
 
         btnPizza.setBackground(new java.awt.Color(0, 102, 204));
         btnPizza.setForeground(new java.awt.Color(255, 255, 255));
@@ -413,7 +418,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
 
         lblCad.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblCad.setForeground(new java.awt.Color(0, 153, 153));
-        lblCad.setText("CADASTRO DE PIZZA");
+        lblCad.setText("CADASTRO DE PIZZA:");
 
         lblDado.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDado.setText("Dados do Pizza:");
@@ -462,6 +467,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
             }
         });
 
+        txtDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jspDescricao.setViewportView(txtDescricao);
 
         txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
@@ -901,6 +907,65 @@ public class frmCad_Produto extends javax.swing.JFrame {
         Sumir();
         
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        // TODO add your handling code here:
+        if(lblCad.getText().equals("CADASTRO DE PIZZA:")){
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM pizza WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR tipo LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR valor LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valorbroto = (rs.getString("valorbroto"));
+                String tipo = (rs.getString("tipo"));
+                String descricao = (rs.getString("descricao"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor,valorbroto,tipo,descricao});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }else{
+            try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM bebida WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR valor LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }
+    }//GEN-LAST:event_txtPesquisaKeyPressed
 
     /**
      * @param args the command line arguments

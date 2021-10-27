@@ -385,6 +385,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
             }
         });
 
+        txtOb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(txtOb);
 
         lblOb.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -756,16 +757,18 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             
-            String nome, telefone, cep,  numero, complemento;
+            String nome, telefone, cep,  numero, complemento, obs;
         
             nome = txtNome.getText();
             telefone = txtTelefone.getText();
             cep = txtCep.getText();
             numero = txtNumero.getText();
             complemento = txtComplemento.getText();
+            obs = txtOb.getText();
             
-            //String sql = "UPDATE endereco SET "')";
-            //st.executeUpdate(sql);
+            String sql = "UPDATE cliente SET  nome = '"+nome+"', fk_cep_endereco = '"+cep+"', numero = "+numero+", complemento = '"+complemento+"', obs = '"+obs+"' where telefone = '"+telefone+"'"; 
+            st.executeUpdate(sql);
+            
             JOptionPane.showMessageDialog(null, "Registro gravado");
         }catch(Exception e){
             System.out.println(e);
@@ -780,7 +783,20 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-        
+        try{
+            
+            String sql = "DELETE FROM cliente where telefone = '"+txtTelefone.getText()+"'";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Registro Deletedo");
+        }catch(Exception e){
+            System.out.println(e);
+            
+            JOptionPane.showMessageDialog(null, "não Deletado");
+        }
+
+        Listar();
+        Limpar();
+        Sumir();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed

@@ -33,7 +33,7 @@ public class frmCad_Endereco extends javax.swing.JFrame {
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
-            JOptionPane.showMessageDialog(null, "Conectado com sucesso");
+            //JOptionPane.showMessageDialog(null, "Conectado com sucesso");
         }catch(Exception e){
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não, Conectado");
