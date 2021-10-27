@@ -56,8 +56,9 @@ public class frmCad_Cliente extends javax.swing.JFrame {
                 String endereco = (rs.getString("logradouro"));
                 String numero = (rs.getString("numero"));
                 String complemento = (rs.getString("complemento"));
+                String obs = (rs.getString("obs"));
                 
-                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento});     
+                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento, obs});     
             
             }
             
@@ -532,7 +533,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Telefone", "CEP", "Bairro", "Endereço", "Número", "Complemento"
+                "Nome", "Telefone", "CEP", "Bairro", "Endereço", "Número", "Complemento", "Obs"
             }
         ));
         jtEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -618,15 +619,16 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             
-            String nome, telefone, cep,  numero, complemento;
+            String nome, telefone, cep,  numero, complemento, obs;
         
             nome = txtNome.getText();
             telefone = txtTelefone.getText();
             cep = txtCep.getText();
             numero = txtNumero.getText();
             complemento = txtComplemento.getText();
+            obs = txtOb.getText();
             
-            String sql = "insert into cliente (nome, telefone, fk_cep_endereco, numero, complemento) values ('"+nome+"','"+telefone+"','"+cep+"','"+numero+"','"+complemento+"')";
+            String sql = "insert into cliente (nome, telefone, fk_cep_endereco, numero, complemento, obs) values ('"+nome+"','"+telefone+"','"+cep+"','"+numero+"','"+complemento+"','"+obs+"')";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Registro gravado");
         }catch(Exception e){
@@ -691,6 +693,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
         txtEndereco.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 4).toString());
         txtNumero.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 5).toString());
         txtComplemento.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 6).toString());
+        txtOb.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 7).toString());
         
     }//GEN-LAST:event_jtEnderecoMouseClicked
 
