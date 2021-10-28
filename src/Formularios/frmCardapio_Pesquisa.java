@@ -5,20 +5,94 @@
  */
 package Formularios;
 
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ruy_s
  */
 public class frmCardapio_Pesquisa extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmCad_Produto
-     */
+    
+        public Connection con;
+        public Statement st;
+        public ResultSet rs;
+        
     public frmCardapio_Pesquisa() {
+        
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
+            st = (Statement)con.createStatement();
+            //JOptionPane.showMessageDialog(null, "Conectado com sucesso");
+        }catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "não, Conectado");
+        }
+        ListarP();
+       
     }
+    
+        private void ListarP(){
+    try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT id, nome FROM pizza";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+               
+                modelo.addRow(new Object[]{codigo,nome});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+    
+    }
+        private void ListarB(){
+    try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT id, nome FROM bebida";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+
+                modelo.addRow(new Object[]{codigo,nome});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+    
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,18 +106,18 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblMenu = new javax.swing.JLabel();
+        lblCardapio = new javax.swing.JLabel();
         lblPedidos = new javax.swing.JLabel();
         lblCadastro = new javax.swing.JLabel();
-        lvlRelatorios = new javax.swing.JLabel();
-        lblCardapio = new javax.swing.JLabel();
-        lblMenu = new javax.swing.JLabel();
+        lblRelatorios = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxProduto = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtPizza = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblCad = new javax.swing.JLabel();
@@ -88,7 +162,30 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/HOME.png"))); // NOI18N
+        lblMenu.setText(" Início");
+        lblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMenuMouseClicked(evt);
+            }
+        });
+
+        lblCardapio.setBackground(new java.awt.Color(204, 204, 204));
+        lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CARDAPIO.png"))); // NOI18N
+        lblCardapio.setText("Cardápio");
+        lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCardapioMouseClicked(evt);
+            }
+        });
+
+        lblPedidos.setBackground(new java.awt.Color(204, 204, 204));
         lblPedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PIZZA.png"))); // NOI18N
         lblPedidos.setText("Pedidos");
         lblPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,7 +194,9 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
             }
         });
 
+        lblCadastro.setBackground(new java.awt.Color(204, 204, 204));
         lblCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CADASTRO.png"))); // NOI18N
         lblCadastro.setText("Cadastro");
         lblCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,30 +205,14 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
             }
         });
 
-        lvlRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lvlRelatorios.setText("Relatórios");
-        lvlRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lvlRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblRelatorios.setBackground(new java.awt.Color(204, 204, 204));
+        lblRelatorios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/GRAFICO.png"))); // NOI18N
+        lblRelatorios.setText("Relatórios");
+        lblRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lvlRelatoriosMouseClicked(evt);
-            }
-        });
-
-        lblCardapio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCardapio.setText("Cardapio");
-        lblCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCardapioMouseClicked(evt);
-            }
-        });
-
-        lblMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblMenu.setText("Menu");
-        lblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMenuMouseClicked(evt);
+                lblRelatoriosMouseClicked(evt);
             }
         });
 
@@ -140,27 +223,27 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lvlRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblCardapio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblMenu)
-                .addGap(144, 144, 144)
-                .addComponent(lblCardapio)
+                .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblPedidos)
                 .addGap(18, 18, 18)
                 .addComponent(lblCadastro)
                 .addGap(18, 18, 18)
-                .addComponent(lvlRelatorios)
+                .addComponent(lblRelatorios)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -170,26 +253,32 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setText("CARDÁPIO");
 
-        jTextField1.setText("Qual sabor deseja?");
-
         jButton3.setBackground(new java.awt.Color(0, 153, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("PESQUISAR");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pizzas", "bebidas" }));
+        cbxProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbxProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pizzas", "bebidas" }));
+        cbxProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxProdutoActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtPizza.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Código", "Nome do produto"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jtPizza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtPizzaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtPizza);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -199,30 +288,30 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
+                    .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3))
-                        .addGap(0, 108, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -356,7 +445,7 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -381,6 +470,24 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
+        // TODO add your handling code here:
+        frmTelaInicial tela = new frmTelaInicial();
+        tela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblMenuMouseClicked
+
+    private void lblCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCardapioMouseClicked
+        // TODO add your handling code here:
+        frmCardapio_Pesquisa tela = new frmCardapio_Pesquisa();
+        tela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblCardapioMouseClicked
+
     private void lblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPedidosMouseClicked
         // TODO add your handling code here:
         frmPedido_Cliente tela = new frmPedido_Cliente();
@@ -395,28 +502,60 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_lblCadastroMouseClicked
 
-    private void lvlRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lvlRelatoriosMouseClicked
+    private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblRelatoriosMouseClicked
+
+    private void jtPizzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPizzaMouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_lvlRelatoriosMouseClicked
+        if(cbxProduto.getSelectedItem().equals("Pizzas")){
+        int n = 0;
+        String id = "";
+ 
+            try {
+                id = (jtPizza.getValueAt(jtPizza.getSelectedRow(), 0).toString());
+                
+                String sql = "SELECT * FROM pizza where id = "+id+"";
+                rs = st.executeQuery(sql);
+               while (rs.next()){
+                 
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valor2 = (rs.getString("valorbroto"));
+                String tipo = (rs.getString("tipo"));
+                String Descricao = (rs.getString("descricao"));
 
-    private void lblCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCardapioMouseClicked
-        // TODO add your handling code here:
-        frmCardapio_Pesquisa tela = new frmCardapio_Pesquisa();
-        tela.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblCardapioMouseClicked
+                txtNome.setText(nome);
+                txtValor.setText(valor);
+                txtValor2.setText(valor2);
+                txtDescricao.setText(Descricao);
+                    switch(tipo){
+            
+                        case "Salgada":
+                        n = 0;
+                        break;
+                        case "Doce":
+                        n=1;
+                        break;
+                }
+                        cbxTipo.setSelectedIndex(n);
+                
+               }
+                
+            } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }else{
+            
+        }
+    }//GEN-LAST:event_jtPizzaMouseClicked
 
-    private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
+    private void cbxProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProdutoActionPerformed
         // TODO add your handling code here:
-        frmTelaInicial tela = new frmTelaInicial();
-        tela.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblMenuMouseClicked
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+        
+        
+    }//GEN-LAST:event_cbxProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -457,11 +596,11 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxProduto;
     private javax.swing.JComboBox<String> cbxTipo;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -470,9 +609,9 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JScrollPane jspDescricao;
+    private javax.swing.JTable jtPizza;
     private javax.swing.JLabel lblCad;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCardapio;
@@ -480,10 +619,10 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPedidos;
+    private javax.swing.JLabel lblRelatorios;
     private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblValor;
     private javax.swing.JLabel lblValor2;
-    private javax.swing.JLabel lvlRelatorios;
     private javax.swing.JTextPane txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtValor;

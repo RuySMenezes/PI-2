@@ -687,6 +687,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
     private void jtEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEnderecoMouseClicked
         // TODO add your handling code here:
         Aparecer();
+        Limpar();
         txtNome.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 0).toString());
         txtTelefone.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 1).toString());
         txtCep.setText(jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 2).toString());

@@ -6,9 +6,6 @@
 package Formularios;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -25,12 +22,12 @@ public class frmCad_Produto extends javax.swing.JFrame {
         public Connection con;
         public Statement st;
         public ResultSet rs;
+        
         public frmCad_Produto() 
         {initComponents();
         
         setExtendedState(MAXIMIZED_BOTH);
        
-
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
             st = (Statement)con.createStatement();
