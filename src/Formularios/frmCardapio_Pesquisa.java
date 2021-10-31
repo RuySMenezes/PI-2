@@ -276,6 +276,7 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
             }
         });
 
+        jtPizza.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtPizza.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -298,15 +299,17 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(361, 361, 361)
+                        .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,10 +318,12 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnPesquisa))
@@ -664,12 +669,11 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         // TODO add your handling code here:
         if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
         try {
-            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
-           modelo.setNumRows(0);
+            int n = 0;
            
             
-            String sql = "SELECT * FROM pizza WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
-                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+            String sql = "SELECT * FROM pizza WHERE nome = '"+txtPesquisa.getText()+"'"
+                    +" OR id = '"+txtPesquisa.getText()+"'";
             
             rs = st.executeQuery(sql);
             while (rs.next()){
@@ -681,22 +685,32 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
                 String tipo = (rs.getString("tipo"));
                 String descricao = (rs.getString("descricao"));
                 
-                modelo.addRow(new Object[]{codigo,nome,valor,valorbroto,tipo,descricao});      
+                txtNome.setText(nome);
+                txtValor.setText(valor);
+                txtValor2.setText(valorbroto);
+                txtDescricao.setText(descricao);
+                
+                switch(tipo){
             
+                case "Salgada":
+                n = 0;
+                break;
+                case "Doce":
+                n=1;
+                break;
+                }
+                cbxTipo.setSelectedIndex(n);         
             }
-            
     
         } catch (SQLException e) {
             System.err.println("Error: "+e);
         }
         }else{
             try {
-            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
-           modelo.setNumRows(0);
            
             
-            String sql = "SELECT * FROM bebida WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
-                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+            String sql = "SELECT * FROM bebida WHERE nome = '"+txtPesquisa.getText()+"'"
+                    +" OR id = '"+txtPesquisa.getText()+"'";
             
             rs = st.executeQuery(sql);
             while (rs.next()){
@@ -705,8 +719,8 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
                 String nome = (rs.getString("nome"));
                 String valor = (rs.getString("valor"));
                 
-                modelo.addRow(new Object[]{codigo,nome,valor});      
-            
+                txtNome.setText(nome);
+                txtValor.setText(valor);
             }
             
     
