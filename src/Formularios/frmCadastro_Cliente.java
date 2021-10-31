@@ -17,6 +17,7 @@ public class frmCadastro_Cliente extends javax.swing.JFrame {
         public Connection con;
         public Statement st;
         public ResultSet rs;
+        
     public frmCadastro_Cliente() {
         initComponents();
         try{

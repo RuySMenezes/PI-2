@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmCad_Endereco.java</file>
-            <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmCardapio_Pesquisa.java</file>
             <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmCadastro_Cliente.java</file>
             <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmPedido_Cliente.java</file>
-            <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmTelaInicial.java</file>
+            <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmCadastro_Endereco.java</file>
             <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmCad_Produto.java</file>
-            <file>file:/E:/Projetos%20Java/PII/src/Formularios/frmCad_Cliente.java</file>
         </group>
     </open-files>
 </project-private>
