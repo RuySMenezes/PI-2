@@ -113,8 +113,8 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         lblRelatorios = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtPesquisa = new javax.swing.JTextField();
+        btnPesquisa = new javax.swing.JButton();
         cbxProduto = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPizza = new javax.swing.JTable();
@@ -139,25 +139,25 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
-        jLabel2.setFont(new java.awt.Font("Lucida Handwriting", 1, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Cadastro de produtos");
+        jLabel2.setText("CARDÁPIO");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(361, 361, 361)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -253,12 +253,23 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setText("CARDÁPIO");
 
-        jButton3.setBackground(new java.awt.Color(0, 153, 51));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("PESQUISAR");
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyPressed(evt);
+            }
+        });
+
+        btnPesquisa.setBackground(new java.awt.Color(0, 153, 51));
+        btnPesquisa.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisa.setText("PESQUISAR");
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaActionPerformed(evt);
+            }
+        });
 
         cbxProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbxProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pizzas", "bebidas" }));
+        cbxProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pizzas", "Bebidas" }));
         cbxProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxProdutoActionPerformed(evt);
@@ -290,9 +301,9 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -309,8 +320,8 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
                         .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))
+                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisa))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -430,7 +441,7 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
                                     .addComponent(lblTipo)
                                     .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jspDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -547,15 +558,163 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
             System.err.println("Error: "+e);
         }
         }else{
-            
+            String id = "";
+            try {
+                id = (jtPizza.getValueAt(jtPizza.getSelectedRow(), 0).toString());
+                
+                String sql = "SELECT * FROM bebida where id = "+id+"";
+                rs = st.executeQuery(sql);
+               while (rs.next()){
+                 
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                
+
+                txtNome.setText(nome);
+                txtValor.setText(valor);
+               }
+                
+            } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
         }
     }//GEN-LAST:event_jtPizzaMouseClicked
 
     private void cbxProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProdutoActionPerformed
         // TODO add your handling code here:
+        if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+            ListarP();
+            lblValor2.setVisible(true);
+            txtValor2.setVisible(true);
+            lblTipo.setVisible(true);
+            cbxTipo.setVisible(true);
+            lblDescricao.setVisible(true);
+            txtDescricao.setVisible(true);
+        }else{
+            ListarB();
+            lblValor2.setVisible(false);
+            txtValor2.setVisible(false);
+            lblTipo.setVisible(false);
+            cbxTipo.setVisible(false);
+            lblDescricao.setVisible(false);
+            txtDescricao.setVisible(false);
+        }
         
         
     }//GEN-LAST:event_cbxProdutoActionPerformed
+
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        // TODO add your handling code here:
+        
+        if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM pizza WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valorbroto = (rs.getString("valorbroto"));
+                String tipo = (rs.getString("tipo"));
+                String descricao = (rs.getString("descricao"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor,valorbroto,tipo,descricao});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }else{
+            try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM bebida WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }
+    }//GEN-LAST:event_txtPesquisaKeyPressed
+
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+        // TODO add your handling code here:
+        if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM pizza WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valorbroto = (rs.getString("valorbroto"));
+                String tipo = (rs.getString("tipo"));
+                String descricao = (rs.getString("descricao"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor,valorbroto,tipo,descricao});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }else{
+            try {
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM bebida WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                String codigo = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                
+                modelo.addRow(new Object[]{codigo,nome,valor});      
+            
+            }
+            
+    
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        }
+    }//GEN-LAST:event_btnPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -596,9 +755,9 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPesquisa;
     private javax.swing.JComboBox<String> cbxProduto;
     private javax.swing.JComboBox<String> cbxTipo;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -609,7 +768,6 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JScrollPane jspDescricao;
     private javax.swing.JTable jtPizza;
     private javax.swing.JLabel lblCad;
@@ -625,6 +783,7 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
     private javax.swing.JLabel lblValor2;
     private javax.swing.JTextPane txtDescricao;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtPesquisa;
     private javax.swing.JTextField txtValor;
     private javax.swing.JTextField txtValor2;
     // End of variables declaration//GEN-END:variables
