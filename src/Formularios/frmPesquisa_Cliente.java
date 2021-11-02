@@ -261,7 +261,11 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
 
     private void jtEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEnderecoMouseClicked
         // TODO add your handling code here:
-        nome= (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 0).toString());
+        nome = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 0).toString());
+        
+        frmPedido_Cliente tela = new frmPedido_Cliente();
+        tela.setVisible(true);
+                tela.recebendo(nome);
        this.dispose();
     }//GEN-LAST:event_jtEnderecoMouseClicked
 
@@ -313,14 +317,5 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
     /**
      * @return the nome
      */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    
 }

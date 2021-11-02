@@ -33,6 +33,9 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         }
         
     }
+    public void recebendo(String recebe){
+        txtNome.setText(recebe);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +75,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnCad_End = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
-        txtNome1 = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtOb = new javax.swing.JTextPane();
         lblOb = new javax.swing.JLabel();
@@ -289,11 +292,11 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
             }
         });
 
-        txtNome1.setEditable(false);
-        txtNome1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtNome1.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.setEditable(false);
+        txtNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNome1ActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
 
@@ -354,7 +357,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblCep)
                                     .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblNome)
@@ -400,7 +403,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblCep)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -486,15 +489,16 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         
         frmPesquisa_Cliente tela = new frmPesquisa_Cliente();
         tela.setVisible(true);
+        this.dispose();
             
-        this.txtTelefone.setText(String.valueOf(""+frmPesquisa_Cliente.nome));
+        //this.txtTelefone.setText(String.valueOf(""+frmPesquisa_Cliente.nome));
             
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void txtNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNome1ActionPerformed
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNome1ActionPerformed
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnCad_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCad_ClienteActionPerformed
         // TODO add your handling code here:
@@ -582,7 +586,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                 
                 txtBairro.setText(bairro);
                 txtEndereco.setText(endereco);
-                txtNome1.setText(nome);
+                txtNome.setText(nome);
                 txtNumero.setText(numero);
                 txtTaxa.setText(taxa);
                 txtCep.setText(cep);
@@ -695,7 +699,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtCep;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtNome1;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextPane txtOb;
     private javax.swing.JFormattedTextField txtTaxa;
