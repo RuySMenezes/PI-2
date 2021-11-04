@@ -19,7 +19,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         public Statement st;
         public ResultSet rs;
         
-        
+        public static String nome="vazio";
     public frmPedido_Cliente() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
@@ -33,8 +33,9 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         }
         
     }
-    public void recebendo(String recebe){
-        txtNome.setText(recebe);
+    public static  void recebendo(String recebe){
+        nome = recebe;
+        
     }
 
     /**
@@ -84,6 +85,13 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -489,9 +497,9 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         
         frmPesquisa_Cliente tela = new frmPesquisa_Cliente();
         tela.setVisible(true);
-        this.dispose();
+        //this.dispose();
             
-        //this.txtTelefone.setText(String.valueOf(""+frmPesquisa_Cliente.nome));
+        txtNome.setText(nome);
             
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
@@ -600,6 +608,12 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_txtTelefoneKeyPressed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        txtNome.setText(nome);
+        nome="";
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
