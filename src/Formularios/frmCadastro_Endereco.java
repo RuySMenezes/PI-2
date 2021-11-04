@@ -226,7 +226,15 @@ public class frmCadastro_Endereco extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "não gravado");
         }
-        this.setVisible(false);
+        
+        frmPedido_Cliente.cep = txtCep.getText();
+        frmPedido_Cliente.endereco = txtEndereco.getText();
+        frmPedido_Cliente.bairro = txtBairro.getText();
+        frmPedido_Cliente.taxa = txtTaxa.getText();
+        
+        frmCadastro_Cliente tela = new frmCadastro_Cliente();
+        tela.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**

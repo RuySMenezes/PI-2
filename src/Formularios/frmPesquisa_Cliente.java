@@ -55,8 +55,9 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
                 String numero = (rs.getString("numero"));
                 String complemento = (rs.getString("complemento"));
                 String obs = (rs.getString("obs"));
+                String taxa = (rs.getString("taxa"));
                 
-                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento, obs});     
+                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento, obs, taxa});     
             
             }
             
@@ -77,12 +78,10 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnSelecionar = new javax.swing.JButton();
         txtPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtEndereco = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        lblteste = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,15 +90,6 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setText("CLIENTES");
-
-        btnSelecionar.setBackground(new java.awt.Color(0, 102, 204));
-        btnSelecionar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSelecionar.setText("Selecionar");
-        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelecionarActionPerformed(evt);
-            }
-        });
 
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +108,7 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Telefone", "CEP", "Bairro", "Endereço", "Número", "Complemento", "Obs"
+                "Nome", "Telefone", "CEP", "Bairro", "Endereço", "Número", "Complemento", "Obs", "Taxa"
             }
         ));
         jtEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,8 +121,6 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Pesquisar");
 
-        lblteste.setText("vazio");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -143,13 +131,8 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblteste)
-                            .addComponent(jLabel4))
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -167,11 +150,7 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(62, 62, 62)
-                        .addComponent(lblteste)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                        .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(206, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(32, 32, 32))))
@@ -197,11 +176,6 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
-       
-        this.dispose();
-    }//GEN-LAST:event_btnSelecionarActionPerformed
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
 
@@ -268,13 +242,16 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
 
     private void jtEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEnderecoMouseClicked
         // TODO add your handling code here:
+        frmPedido_Cliente.telefone = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 1).toString());
+        frmPedido_Cliente.bairro = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 3).toString());
+        frmPedido_Cliente.endereco = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 4).toString());
         frmPedido_Cliente.nome = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 0).toString());
-        //lblteste.setText((jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 0).toString()));
-        //frmPedido_Cliente.recebendo(lblteste.getText());
-        //frmPedido_Cliente.nome = lblteste.getText();
-        //frmPedido_Cliente tela = new frmPedido_Cliente();
-        //tela.setVisible(true);
-       // tela.recebendo(nome);
+        frmPedido_Cliente.numero = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 5).toString());
+        frmPedido_Cliente.taxa = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 8).toString());
+        frmPedido_Cliente.cep = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 2).toString());
+        frmPedido_Cliente.complemento = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 6).toString());
+        frmPedido_Cliente.obs = (jtEndereco.getValueAt(jtEndereco.getSelectedRow(), 7).toString());
+   
         this.dispose();
     }//GEN-LAST:event_jtEnderecoMouseClicked
 
@@ -314,13 +291,11 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSelecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtEndereco;
-    private javax.swing.JLabel lblteste;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 

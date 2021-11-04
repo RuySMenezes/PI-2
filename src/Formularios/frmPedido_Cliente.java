@@ -19,7 +19,16 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         public Statement st;
         public ResultSet rs;
         
-        public static String nome="vazio";
+        public static String nome="";
+        public static String telefone="";
+        public static String bairro="";
+        public static String endereco="";
+        public static String numero="";
+        public static String taxa="";
+        public static String cep="";
+        public static String complemento="";
+        public static String obs="";
+        
     public frmPedido_Cliente() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
@@ -31,10 +40,6 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não, Conectado");
         }
-        
-    }
-    public static  void recebendo(String recebe){
-        nome = recebe;
         
     }
 
@@ -72,7 +77,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         lblTelefone = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
         btnCad_Cliente = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnSacola = new javax.swing.JButton();
         btnCad_End = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
@@ -263,13 +268,13 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(0, 153, 51));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("CONTINUAR PARA PEDIDO");
-        jButton5.setActionCommand("IR PARA PEDIDO");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnSacola.setBackground(new java.awt.Color(0, 153, 51));
+        btnSacola.setForeground(new java.awt.Color(255, 255, 255));
+        btnSacola.setText("CONTINUAR PARA PEDIDO");
+        btnSacola.setActionCommand("IR PARA PEDIDO");
+        btnSacola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnSacolaActionPerformed(evt);
             }
         });
 
@@ -341,7 +346,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnCad_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSacola, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
                 .addComponent(jLabel3))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -445,7 +450,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCad_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSacola, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCad_End, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50))
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -480,16 +485,33 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnSacolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacolaActionPerformed
         // TODO add your handling code here:
-        frmPedido_Sacola tela = new frmPedido_Sacola();
-        tela.setVisible(true);
-        this.setVisible(false);
-      
-    }//GEN-LAST:event_jButton5ActionPerformed
+        if(txtTelefone.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor Insira os dados do cliente");
+        }else{
+            nome = txtNome.getText();
+            telefone = txtBairro.getText();
+            
+            frmPedido_Sacola tela = new frmPedido_Sacola();
+            tela.setVisible(true);
+            this.setVisible(false);
+        }
+
+    }//GEN-LAST:event_btnSacolaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
+        txtBairro.setText("");
+        txtCep.setText("");
+        txtComplemento.setText("");
+        txtEndereco.setText("");
+        txtNome.setText("");
+        txtNumero.setText("");
+        txtOb.setText("");
+        txtTaxa.setText("");
+        txtTelefone.setText("");
+                
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -497,10 +519,6 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         
         frmPesquisa_Cliente tela = new frmPesquisa_Cliente();
         tela.setVisible(true);
-        //this.dispose();
-            
-        txtNome.setText(nome);
-            
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -613,6 +631,23 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtNome.setText(nome);
         nome="";
+        txtTelefone.setText(telefone);
+        telefone="";
+        txtBairro.setText(bairro);
+        bairro="";
+        txtEndereco.setText(endereco);
+        endereco="";
+        txtNumero.setText(numero);
+        numero="";
+        txtTaxa.setText(taxa);
+        taxa="";
+        txtCep.setText(cep);
+        cep="";
+        txtComplemento.setText(complemento);
+        complemento="";
+        txtOb.setText(obs);
+        obs="";
+        
     }//GEN-LAST:event_formWindowGainedFocus
 
     /**
@@ -686,8 +721,8 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
     private javax.swing.JButton btnCad_End;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnSacola;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
