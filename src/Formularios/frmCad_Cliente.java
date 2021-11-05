@@ -706,8 +706,8 @@ public class frmCad_Cliente extends javax.swing.JFrame {
            modelo.setNumRows(0);
            
             
-            String sql = "SELECT * FROM cliente WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
-                    +" OR cep LIKE '%"+txtPesquisa.getText()+"%'"
+            String sql = "SELECT * FROM cliente as C inner join endereco as E on C.fk_cep_endereco = E.cep WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR fk_cep_endereco LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR telefone LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR logradouro LIKE '%"+txtPesquisa.getText()+"%'";
                     
@@ -807,7 +807,7 @@ public class frmCad_Cliente extends javax.swing.JFrame {
            modelo.setNumRows(0);
            
             
-            String sql = "SELECT * FROM cliente as C inner join enderdeco as E on C.fk_cep_endereco = E.cep WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
+            String sql = "SELECT * FROM cliente as C inner join endereco as E on C.fk_cep_endereco = E.cep WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR fk_cep_endereco LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR telefone LIKE '%"+txtPesquisa.getText()+"%'"
                     +" OR logradouro LIKE '%"+txtPesquisa.getText()+"%'";
