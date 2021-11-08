@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Formularios;
+
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,25 +20,31 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmPedido_Sacola extends javax.swing.JFrame {
 
-        public Connection con;
-        public Statement st;
-        public ResultSet rs;
-        
+    public Connection con;
+    public Statement st;
+    public ResultSet rs;
+
+    float vFinal = 0;
+
     public frmPedido_Sacola() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root","");
-            st = (Statement)con.createStatement();
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
+            st = (Statement) con.createStatement();
             //JOptionPane.showMessageDialog(null, "Conectado com sucesso");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não, Conectado");
         }
         ListarP();
         ListarSacola();
         txtNomeCliente.setText(frmPedido_Cliente.nome);
-        
+
+        txtValor1.setText("0.00");
+        txtValor2.setText("0.00");
+        txtValor3.setText("0.00");
+
         lblCodItem2.setVisible(false);
         txtCod_produto2.setVisible(false);
         lblCodItem3.setVisible(false);
@@ -51,81 +57,76 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         txtValor2.setVisible(false);
         lblvalor3.setVisible(false);
         txtValor3.setVisible(false);
-        
-        
+
     }
-    
-        private void ListarP(){
-    try {
+
+    private void ListarP() {
+        try {
             DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
-           modelo.setNumRows(0);
-           
-            
+            modelo.setNumRows(0);
+
             String sql = "SELECT id, nome, valor, valorbroto FROM pizza";
-            
+
             rs = st.executeQuery(sql);
-            while (rs.next()){
-                
+            while (rs.next()) {
+
                 String codigo = (rs.getString("id"));
                 String nome = (rs.getString("nome"));
                 String valor = (rs.getString("valor"));
                 String valorbroto = (rs.getString("valorbroto"));
-               
-                modelo.addRow(new Object[]{codigo,nome,valor, valorbroto});      
-            
+
+                modelo.addRow(new Object[]{codigo, nome, valor, valorbroto});
+
             }
-            
-    
+
         } catch (SQLException e) {
-            System.err.println("Error: "+e);
+            System.err.println("Error: " + e);
         }
-    
+
     }
-        private void ListarB(){
-    try {
+
+    private void ListarB() {
+        try {
             DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
-           modelo.setNumRows(0);
-           
-            
+            modelo.setNumRows(0);
+
             String sql = "SELECT id, nome, valor FROM bebida";
-            
+
             rs = st.executeQuery(sql);
-            while (rs.next()){
-                
+            while (rs.next()) {
+
                 String codigo = (rs.getString("id"));
                 String nome = (rs.getString("nome"));
                 String valor = (rs.getString("valor"));
 
-                modelo.addRow(new Object[]{codigo,nome,valor});      
-            
+                modelo.addRow(new Object[]{codigo, nome, valor});
+
             }
-            
-    
+
         } catch (SQLException e) {
-            System.err.println("Error: "+e);
+            System.err.println("Error: " + e);
         }
-    
+
     }
-        
-        private void ListarSacola(){
-            try {
+
+    private void ListarSacola() {
+        try {
             DefaultTableModel modelo = (DefaultTableModel) jtSacola.getModel();
-           modelo.setNumRows(0);
-           
-            
-            String sql = "select qtd, B.nome, X.nome, y.nome , Z.nome, X.valor, Y.valor, Z.valor, B.valor, I.obs from pedido as P  " +
-                                    "	left join cliente as C  on C.telefone = P.telefone_c" +
-                                    "	left join item_pedido as I on I.id_pedido = P.id" +
-                                    "   left join bebida as B on I.id_bebida = B.id" +
-                                    "   left join pizza as X  on I.id_pizza = X.id" +
-                                    "   left join pizza as Y on I.id_pizza2 = Y.id" +
-                                    "   left join pizza as Z on I.id_pizza3 = Z.id" +
-                                    "   where P.id = "+lblNum_pedido.getText();
-            
+            modelo.setNumRows(0);
+
+            String sql = "select qtd, B.nome, X.nome, y.nome , Z.nome, X.valor, Y.valor, Z.valor, B.valor, I.obs from pedido as P  "
+                    + "	left join cliente as C  on C.telefone = P.telefone_c"
+                    + "	left join item_pedido as I on I.id_pedido = P.id"
+                    + "   left join bebida as B on I.id_bebida = B.id"
+                    + "   left join pizza as X  on I.id_pizza = X.id"
+                    + "   left join pizza as Y on I.id_pizza2 = Y.id"
+                    + "   left join pizza as Z on I.id_pizza3 = Z.id"
+                    + "   where P.id = " + lblNum_pedido.getText();
+
             rs = st.executeQuery(sql);
-            while (rs.next()){
+            while (rs.next()) {
                 float valor = 0, valorF = 0;
-                
+
                 String pizza = (rs.getString("X.nome"));
                 String pizza2 = (rs.getString("Y.nome"));
                 String pizza3 = (rs.getString("Z.nome"));
@@ -135,27 +136,26 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 float valor3 = (rs.getFloat("Z.valor"));
                 float valorB = (rs.getFloat("B.valor"));
                 int qtd = (rs.getInt("qtd"));
-                
-                if(valor1 >= valor2 && valor1 >= valor3 && valor1 >= valorB){
+
+                if (valor1 >= valor2 && valor1 >= valor3 && valor1 >= valorB) {
                     valor = valor1;
-                }else  if(valor2 >= valor1 && valor2 >= valor3 && valor2 >= valorB){
+                } else if (valor2 >= valor1 && valor2 >= valor3 && valor2 >= valorB) {
                     valor = valor2;
-                }else  if(valor3 >= valor1 && valor3 >= valor1 && valor3 >= valorB){
+                } else if (valor3 >= valor1 && valor3 >= valor1 && valor3 >= valorB) {
                     valor = valor3;
-                }else {
+                } else {
                     valor = valorB;
                 }
                 valorF = qtd * valor;
-               
-                modelo.addRow(new Object[]{pizza,pizza2, pizza3, bebida, valor, qtd, valorF});      
-            
+
+                modelo.addRow(new Object[]{pizza, pizza2, pizza3, bebida, valor, qtd, valorF});
+
             }
-            
-    
+
         } catch (SQLException e) {
-            System.err.println("Error: "+e);
+            System.err.println("Error: " + e);
         }
-        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -385,11 +385,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 txtCod_produto1ActionPerformed(evt);
             }
         });
-        txtCod_produto1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_produto1KeyPressed(evt);
-            }
-        });
 
         btnMenos.setBackground(new java.awt.Color(255, 0, 0));
         btnMenos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -406,13 +401,13 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             }
         });
 
-        jtSacola.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jtSacola.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtSacola.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Pizza", "Pizza2", "Pizza3", "Bebida", "Valor", "Quantidade", "Total"
+                "Pizza", "Pizza2", "Pizza3", "Borda", "Bebida", "Valor", "Quantidade", "Total"
             }
         ));
         jScrollPane1.setViewportView(jtSacola);
@@ -500,11 +495,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 txtCod_produto2ActionPerformed(evt);
             }
         });
-        txtCod_produto2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_produto2KeyPressed(evt);
-            }
-        });
 
         lblCodItem3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblCodItem3.setText("Código Item:");
@@ -512,11 +502,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         txtCod_produto3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_produto3ActionPerformed(evt);
-            }
-        });
-        txtCod_produto3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_produto3KeyPressed(evt);
             }
         });
 
@@ -534,11 +519,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         lblVFinal.setText("Valor Final:");
 
         txtVFinal.setEditable(false);
-        txtVFinal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVFinalActionPerformed(evt);
-            }
-        });
 
         cbxBorda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cbxBorda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sem borda recheada", "Borda de Catupiry", "Borda de Cheddar", "Borda de Cream Cheese", "Borda de Gergelim", "Borda de Mussarela", "Borda de Chocolate", "Borda de Catupiry + Gergelim", "Borda de Cheddar + Gergelim", "Borda de Cream Cheese + Gergelim", "Borda de Mussarela + Gergelim", " " }));
@@ -639,11 +619,24 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(43, 43, 43))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(905, 905, 905)
-                .addComponent(txtVFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblObs)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtObs, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
+                        .addComponent(btnMais1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(905, 905, 905)
+                        .addComponent(txtVFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -664,20 +657,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIrPagmento)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblObs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtObs, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125)
-                        .addComponent(btnMais1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -838,70 +817,100 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
     private void jtPizzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPizzaMouseClicked
         // TODO add your handling code here:
 
-        if(cbxProduto.getSelectedItem().equals("Pizzas")){
+        if (cbxProduto.getSelectedItem().equals("Pizzas")) {
             int n = 0;
             String id = "";
 
             try {
                 id = (jtPizza.getValueAt(jtPizza.getSelectedRow(), 0).toString());
 
-                String sql = "SELECT nome, valor, valorbroto FROM pizza where id = "+id+"";
+                String sql = "SELECT nome, valor, valorbroto FROM pizza where id = " + id + "";
                 rs = st.executeQuery(sql);
-                while (rs.next()){
+                while (rs.next()) {
 
-                    if(txtCod_produto1.getText().equals("")){
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
+                    if (txtCod_produto1.getText().equals("")) {
+                        String nome = (rs.getString("nome"));
+                        String valor = (rs.getString("valor"));
+                        String valor2 = (rs.getString("valorbroto"));
 
-                    txtProduto1.setText(nome);
-                    
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor1.setText(valor);
-                    }else{
-                        txtValor1.setText(valor2);
-                    }  
-                    txtCod_produto1.setText(id);  
-                }else if(txtCod_produto2.getText().equals("")){
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
+                        txtProduto1.setText(nome);
 
-                    txtProduto2.setText(nome);
-                    
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor2.setText(valor);
-                    }else{
-                        txtValor2.setText(valor2);
-                    }  
-                    txtCod_produto2.setText(id);  
-                }else{
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
+                        if (cbxTamanho.getSelectedItem().equals("Grande")) {
+                            txtValor1.setText(valor);
+                            if (Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor2.getText()) && Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor3.getText())) {
+                                vFinal = Float.parseFloat(txtValor1.getText());
+                                txtVFinal.setText("" + vFinal);
+                            }
+                        } else {
+                            txtValor1.setText(valor2);
+                            if (Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor2.getText()) && Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor3.getText())) {
+                                vFinal = Float.parseFloat(txtValor1.getText());
+                                txtVFinal.setText("" + vFinal);
+                            }
+                        }
+                        txtCod_produto1.setText(id);
+                    } else if (txtCod_produto2.getText().equals("")) {
 
-                    txtProduto3.setText(nome);
-                    
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor3.setText(valor);
-                    }else{
-                        txtValor3.setText(valor2);
-                    }  
-                    txtCod_produto3.setText(id);  
-                }
+                        if (txtCod_produto2.isVisible()) {
+                            String nome = (rs.getString("nome"));
+                            String valor = (rs.getString("valor"));
+                            String valor2 = (rs.getString("valorbroto"));
+
+                            txtProduto2.setText(nome);
+
+                            if (cbxTamanho.getSelectedItem().equals("Grande")) {
+                                txtValor2.setText(valor);
+                                if (Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor1.getText()) && Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor3.getText())) {
+                                    vFinal = Float.parseFloat(txtValor2.getText());
+                                    txtVFinal.setText("" + vFinal);
+                                }
+                            } else {
+                                txtValor2.setText(valor2);
+                                if (Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor1.getText()) && Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor3.getText())) {
+                                    vFinal = Float.parseFloat(txtValor2.getText());
+                                    txtVFinal.setText("" + vFinal);
+                                }
+                            }
+                            txtCod_produto2.setText(id);
+                        }
+                    } else if (txtCod_produto3.getText().equals("")) {
+
+                        if (txtCod_produto3.isVisible()) {
+                            String nome = (rs.getString("nome"));
+                            String valor = (rs.getString("valor"));
+                            String valor2 = (rs.getString("valorbroto"));
+
+                            txtProduto3.setText(nome);
+
+                            if (cbxTamanho.getSelectedItem().equals("Grande")) {
+                                txtValor3.setText(valor);
+                                if (Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor1.getText()) && Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor2.getText())) {
+                                    vFinal = Float.parseFloat(txtValor3.getText());
+                                    txtVFinal.setText("" + vFinal);
+                                }
+                            } else {
+                                txtValor3.setText(valor2);
+                                if (Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor1.getText()) && Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor2.getText())) {
+                                    vFinal = Float.parseFloat(txtValor3.getText());
+                                    txtVFinal.setText("" + vFinal);
+                                }
+                            }
+                            txtCod_produto3.setText(id);
+                        }
+                    }
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
-        }else{
+        } else {
             String id = "";
             try {
                 id = (jtPizza.getValueAt(jtPizza.getSelectedRow(), 0).toString());
 
-                String sql = "SELECT * FROM bebida where id = "+id+"";
+                String sql = "SELECT * FROM bebida where id = " + id + "";
                 rs = st.executeQuery(sql);
-                while (rs.next()){
+                while (rs.next()) {
 
                     String nome = (rs.getString("nome"));
                     String valor = (rs.getString("valor"));
@@ -911,15 +920,16 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                     txtCod_produto1.setText(id);
                 }
 
+                txtVFinal.setText(txtValor1.getText());
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
         }
     }//GEN-LAST:event_jtPizzaMouseClicked
 
     private void cbxProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProdutoActionPerformed
         // TODO add your handling code here:
-        if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+        if ("Pizzas".equals(cbxProduto.getSelectedItem().toString())) {
             ListarP();
             cbxTamanho.setVisible(true);
             cbxBorda.setVisible(true);
@@ -928,20 +938,20 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             cbxDivisao.setSelectedIndex(0);
             lblObs.setVisible(true);
             txtObs.setVisible(true);
-            if(cbxDivisao.getSelectedItem().equals("Inteira")){
-            lblCodItem2.setVisible(false);
-            txtCod_produto2.setVisible(false);
-            lblCodItem3.setVisible(false);
-            txtCod_produto3.setVisible(false);
-            lblProduto2.setVisible(false);
-            txtProduto2.setVisible(false);
-            lblProduto3.setVisible(false);
-            txtProduto3.setVisible(false);
-            lblvalor2.setVisible(false);
-            txtValor2.setVisible(false);
-            lblvalor3.setVisible(false);
-            txtValor3.setVisible(false);
-        }else if(cbxDivisao.getSelectedItem().equals("1/2")){
+            if (cbxDivisao.getSelectedItem().equals("Inteira")) {
+                lblCodItem2.setVisible(false);
+                txtCod_produto2.setVisible(false);
+                lblCodItem3.setVisible(false);
+                txtCod_produto3.setVisible(false);
+                lblProduto2.setVisible(false);
+                txtProduto2.setVisible(false);
+                lblProduto3.setVisible(false);
+                txtProduto3.setVisible(false);
+                lblvalor2.setVisible(false);
+                txtValor2.setVisible(false);
+                lblvalor3.setVisible(false);
+                txtValor3.setVisible(false);
+            } else if (cbxDivisao.getSelectedItem().equals("1/2")) {
                 lblCodItem2.setVisible(true);
                 txtCod_produto2.setVisible(true);
                 lblCodItem3.setVisible(false);
@@ -954,21 +964,21 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 txtValor2.setVisible(true);
                 lblvalor3.setVisible(false);
                 txtValor3.setVisible(false);
-                }else{
-                    lblCodItem2.setVisible(true);
-                    txtCod_produto2.setVisible(true);
-                    lblCodItem3.setVisible(true);
-                    txtCod_produto3.setVisible(true);
-                    lblProduto2.setVisible(true);
-                    txtProduto2.setVisible(true);
-                    lblProduto3.setVisible(true);
-                    txtProduto3.setVisible(true);
-                    lblvalor2.setVisible(true);
-                    txtValor2.setVisible(true);
-                    lblvalor3.setVisible(true);
-                    txtValor3.setVisible(true);
-                }
-        }else{
+            } else {
+                lblCodItem2.setVisible(true);
+                txtCod_produto2.setVisible(true);
+                lblCodItem3.setVisible(true);
+                txtCod_produto3.setVisible(true);
+                lblProduto2.setVisible(true);
+                txtProduto2.setVisible(true);
+                lblProduto3.setVisible(true);
+                txtProduto3.setVisible(true);
+                lblvalor2.setVisible(true);
+                txtValor2.setVisible(true);
+                lblvalor3.setVisible(true);
+                txtValor3.setVisible(true);
+            }
+        } else {
             ListarB();
             cbxBorda.setVisible(false);
             cbxTamanho.setVisible(false);
@@ -987,7 +997,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             txtValor2.setVisible(false);
             lblvalor3.setVisible(false);
             txtValor3.setVisible(false);
-            
+
         }
 
     }//GEN-LAST:event_cbxProdutoActionPerformed
@@ -995,16 +1005,16 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
         // TODO add your handling code here:
 
-        if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+        if ("Pizzas".equals(cbxProduto.getSelectedItem().toString())) {
             try {
                 DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
                 modelo.setNumRows(0);
 
-                String sql = "SELECT * FROM pizza WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
-                +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+                String sql = "SELECT * FROM pizza WHERE nome LIKE '%" + txtPesquisa.getText() + "%'"
+                        + " OR id LIKE '%" + txtPesquisa.getText() + "%'";
 
                 rs = st.executeQuery(sql);
-                while (rs.next()){
+                while (rs.next()) {
 
                     String codigo = (rs.getString("id"));
                     String nome = (rs.getString("nome"));
@@ -1013,34 +1023,34 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                     String tipo = (rs.getString("tipo"));
                     String descricao = (rs.getString("descricao"));
 
-                    modelo.addRow(new Object[]{codigo,nome,valor,valorbroto,tipo,descricao});
+                    modelo.addRow(new Object[]{codigo, nome, valor, valorbroto, tipo, descricao});
 
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
-        }else{
+        } else {
             try {
                 DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
                 modelo.setNumRows(0);
 
-                String sql = "SELECT * FROM bebida WHERE nome LIKE '%"+txtPesquisa.getText()+"%'"
-                +" OR id LIKE '%"+txtPesquisa.getText()+"%'";
+                String sql = "SELECT * FROM bebida WHERE nome LIKE '%" + txtPesquisa.getText() + "%'"
+                        + " OR id LIKE '%" + txtPesquisa.getText() + "%'";
 
                 rs = st.executeQuery(sql);
-                while (rs.next()){
+                while (rs.next()) {
 
                     String codigo = (rs.getString("id"));
                     String nome = (rs.getString("nome"));
                     String valor = (rs.getString("valor"));
 
-                    modelo.addRow(new Object[]{codigo,nome,valor});
+                    modelo.addRow(new Object[]{codigo, nome, valor});
 
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
         }
     }//GEN-LAST:event_txtPesquisaKeyPressed
@@ -1056,7 +1066,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
     private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
         // TODO add your handling code here:
-       /* if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+        /* if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
             try {
                 int n = 0;
 
@@ -1118,37 +1128,37 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
     private void cbxTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTamanhoActionPerformed
         // TODO add your handling code here:
-        if(txtCod_produto1.getText().equals("")){
-        }else{
+        if (txtCod_produto1.getText().equals("")) {
+        } else {
             try {
                 System.out.println(txtCod_produto1.getText());
-                String sql = "SELECT valor, valorbroto FROM pizza WHERE id = "+txtCod_produto1.getText()+"";
+                String sql = "SELECT valor, valorbroto FROM pizza WHERE id = " + txtCod_produto1.getText() + "";
 
                 rs = st.executeQuery(sql);
-                while (rs.next()){
-                    
+                while (rs.next()) {
+
                     String valor = (rs.getString("valor"));
                     String valor2 = (rs.getString("valorbroto"));
-                    
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
+
+                    if (cbxTamanho.getSelectedItem().equals("Grande")) {
                         txtValor1.setText(valor);
-                    }else{
+                    } else {
                         txtValor1.setText(valor2);
-                    }  
+                    }
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
-        
-       }
-        
+
+        }
+
     }//GEN-LAST:event_cbxTamanhoActionPerformed
 
     private void cbxDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDivisaoActionPerformed
         // TODO add your handling code here:
-        
-        if(cbxDivisao.getSelectedItem().equals("Inteira")){
+
+        if (cbxDivisao.getSelectedItem().equals("Inteira")) {
             lblCodItem2.setVisible(false);
             txtCod_produto2.setVisible(false);
             lblCodItem3.setVisible(false);
@@ -1161,39 +1171,35 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             txtValor2.setVisible(false);
             lblvalor3.setVisible(false);
             txtValor3.setVisible(false);
-        }else if(cbxDivisao.getSelectedItem().equals("1/2")){
-                lblCodItem2.setVisible(true);
-                txtCod_produto2.setVisible(true);
-                lblCodItem3.setVisible(false);
-                txtCod_produto3.setVisible(false);
-                lblProduto2.setVisible(true);
-                txtProduto2.setVisible(true);
-                lblProduto3.setVisible(false);
-                txtProduto3.setVisible(false);
-                lblvalor2.setVisible(true);
-                txtValor2.setVisible(true);
-                lblvalor3.setVisible(false);
-                txtValor3.setVisible(false);
-                }else{
-                    lblCodItem2.setVisible(true);
-                    txtCod_produto2.setVisible(true);
-                    lblCodItem3.setVisible(true);
-                    txtCod_produto3.setVisible(true);
-                    lblProduto2.setVisible(true);
-                    txtProduto2.setVisible(true);
-                    lblProduto3.setVisible(true);
-                    txtProduto3.setVisible(true);
-                    lblvalor2.setVisible(true);
-                    txtValor2.setVisible(true);
-                    lblvalor3.setVisible(true);
-                    txtValor3.setVisible(true);
-                }
-        
-    }//GEN-LAST:event_cbxDivisaoActionPerformed
+        } else if (cbxDivisao.getSelectedItem().equals("1/2")) {
+            lblCodItem2.setVisible(true);
+            txtCod_produto2.setVisible(true);
+            lblCodItem3.setVisible(false);
+            txtCod_produto3.setVisible(false);
+            lblProduto2.setVisible(true);
+            txtProduto2.setVisible(true);
+            lblProduto3.setVisible(false);
+            txtProduto3.setVisible(false);
+            lblvalor2.setVisible(true);
+            txtValor2.setVisible(true);
+            lblvalor3.setVisible(false);
+            txtValor3.setVisible(false);
+        } else {
+            lblCodItem2.setVisible(true);
+            txtCod_produto2.setVisible(true);
+            lblCodItem3.setVisible(true);
+            txtCod_produto3.setVisible(true);
+            lblProduto2.setVisible(true);
+            txtProduto2.setVisible(true);
+            lblProduto3.setVisible(true);
+            txtProduto3.setVisible(true);
+            lblvalor2.setVisible(true);
+            txtValor2.setVisible(true);
+            lblvalor3.setVisible(true);
+            txtValor3.setVisible(true);
+        }
 
-    private void txtVFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVFinalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVFinalActionPerformed
+    }//GEN-LAST:event_cbxDivisaoActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
@@ -1203,146 +1209,49 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         txtProduto1.setText("");
         txtProduto2.setText("");
         txtProduto3.setText("");
-        txtValor1.setText("");
-        txtValor2.setText("");
-        txtValor3.setText("");
+        txtValor1.setText("0.00");
+        txtValor2.setText("0.00");
+        txtValor3.setText("0.00");
+        txtVFinal.setText("");
         txtObs.setText("");
+        vFinal = 0;
     }//GEN-LAST:event_btnLimparActionPerformed
-
-    private void txtCod_produto1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_produto1KeyPressed
-        // TODO add your handling code here:
-        
-        if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
-            try {
-                
-
-                String sql = "SELECT * FROM pizza WHERE id = "+txtCod_produto1.getText();
-
-                rs = st.executeQuery(sql);
-                while (rs.next()){
-                    
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
-
-                    txtProduto1.setText(nome);
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor1.setText(valor);
-                    }else{
-                        txtValor1.setText(valor2);
-                    }
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error: "+e);
-            }
-        }else{
-            try {
-
-                String sql = "SELECT * FROM bebida WHERE id = "+txtCod_produto1.getText()+"";
-
-                rs = st.executeQuery(sql);
-                while (rs.next()){
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-
-                    txtProduto1.setText(nome);
-                    txtValor1.setText(valor);
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error: "+e);
-            }
-        }
-    }//GEN-LAST:event_txtCod_produto1KeyPressed
-
-    private void txtCod_produto2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_produto2KeyPressed
-        // TODO add your handling code here:
-        try {
-                
-
-                String sql = "SELECT * FROM pizza WHERE id = "+txtCod_produto2.getText()+"";
-
-                rs = st.executeQuery(sql);
-                while (rs.next()){
-                    
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
-
-                    txtProduto2.setText(nome);
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor2.setText(valor);
-                    }else{
-                        txtValor2.setText(valor2);
-                    }
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error: "+e);
-            }
-
-
-    }//GEN-LAST:event_txtCod_produto2KeyPressed
-
-    private void txtCod_produto3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_produto3KeyPressed
-        // TODO add your handling code here:
-        try {
-                
-
-                String sql = "SELECT * FROM pizza WHERE id = "+txtCod_produto3.getText()+"";
-
-                rs = st.executeQuery(sql);
-                while (rs.next()){
-                    
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
-
-                    txtProduto3.setText(nome);
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor3.setText(valor);
-                    }else{
-                        txtValor3.setText(valor2);
-                    }
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error: "+e);
-            }
-    }//GEN-LAST:event_txtCod_produto3KeyPressed
 
     private void txtCod_produto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_produto1ActionPerformed
         // TODO add your handling code here:
-        if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+        if ("Pizzas".equals(cbxProduto.getSelectedItem().toString())) {
             try {
-                String sql = "SELECT nome, valor, valorbroto FROM pizza WHERE id = "+txtCod_produto1.getText()+"";
+                String sql = "SELECT nome, valor, valorbroto FROM pizza WHERE id = " + txtCod_produto1.getText() + "";
 
                 rs = st.executeQuery(sql);
-                while (rs.next()){
-                    
+                while (rs.next()) {
+
                     String nome = (rs.getString("nome"));
                     String valor = (rs.getString("valor"));
                     String valor2 = (rs.getString("valorbroto"));
 
                     txtProduto1.setText(nome);
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
+                    if (cbxTamanho.getSelectedItem().equals("Grande")) {
                         txtValor1.setText(valor);
-                    }else{
+                    } else {
                         txtValor1.setText(valor2);
                     }
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
-        }else{
+            if (Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor2.getText()) && Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor3.getText())) {
+                vFinal = Float.parseFloat(txtValor1.getText());
+                txtVFinal.setText("" + vFinal);
+            }
+        } else {
             try {
 
-                String sql = "SELECT * FROM bebida WHERE id = "+txtCod_produto1.getText()+"";
+                String sql = "SELECT * FROM bebida WHERE id = " + txtCod_produto1.getText() + "";
 
                 rs = st.executeQuery(sql);
-                while (rs.next()){
+                while (rs.next()) {
                     String nome = (rs.getString("nome"));
                     String valor = (rs.getString("valor"));
 
@@ -1351,63 +1260,70 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
+            txtVFinal.setText(txtValor1.getText());
         }
     }//GEN-LAST:event_txtCod_produto1ActionPerformed
 
     private void txtCod_produto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_produto2ActionPerformed
         // TODO add your handling code here:
         try {
-                
 
-                String sql = "SELECT * FROM pizza WHERE id = "+txtCod_produto2.getText()+"";
+            String sql = "SELECT * FROM pizza WHERE id = " + txtCod_produto2.getText() + "";
 
-                rs = st.executeQuery(sql);
-                while (rs.next()){
-                    
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
 
-                    txtProduto2.setText(nome);
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor2.setText(valor);
-                    }else{
-                        txtValor2.setText(valor2);
-                    }
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valor2 = (rs.getString("valorbroto"));
+
+                txtProduto2.setText(nome);
+                if (cbxTamanho.getSelectedItem().equals("Grande")) {
+                    txtValor2.setText(valor);
+                } else {
+                    txtValor2.setText(valor2);
                 }
-
-            } catch (SQLException e) {
-                System.err.println("Error: "+e);
             }
+
+            if (Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor1.getText()) && Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor3.getText())) {
+                vFinal = Float.parseFloat(txtValor2.getText());
+                txtVFinal.setText("" + vFinal);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
     }//GEN-LAST:event_txtCod_produto2ActionPerformed
 
     private void txtCod_produto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_produto3ActionPerformed
         // TODO add your handling code here:
         try {
-                
 
-                String sql = "SELECT * FROM pizza WHERE id = "+txtCod_produto3.getText()+"";
+            String sql = "SELECT * FROM pizza WHERE id = " + txtCod_produto3.getText() + "";
 
-                rs = st.executeQuery(sql);
-                while (rs.next()){
-                    
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valor2 = (rs.getString("valorbroto"));
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
 
-                    txtProduto3.setText(nome);
-                    if(cbxTamanho.getSelectedItem().equals("Grande")){
-                        txtValor3.setText(valor);
-                    }else{
-                        txtValor3.setText(valor2);
-                    }
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valor2 = (rs.getString("valorbroto"));
+
+                txtProduto3.setText(nome);
+                if (cbxTamanho.getSelectedItem().equals("Grande")) {
+                    txtValor3.setText(valor);
+                } else {
+                    txtValor3.setText(valor2);
                 }
-
-            } catch (SQLException e) {
-                System.err.println("Error: "+e);
             }
+            if (Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor2.getText()) && Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor1.getText())) {
+                vFinal = Float.parseFloat(txtValor3.getText());
+                txtVFinal.setText("" + vFinal);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
     }//GEN-LAST:event_txtCod_produto3ActionPerformed
 
     /**
