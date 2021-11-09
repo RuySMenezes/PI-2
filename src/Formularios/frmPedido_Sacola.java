@@ -148,7 +148,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 }
                 valorF = qtd * valor;
 
-                modelo.addRow(new Object[]{pizza, pizza2, pizza3, bebida, valor, qtd, valorF});
+                modelo.addRow(new Object[]{pizza, pizza2, pizza3, "",bebida,"", valor, qtd, valorF});
 
             }
 
@@ -407,9 +407,17 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Pizza", "Pizza2", "Pizza3", "Borda", "Bebida", "Valor", "Quantidade", "Total"
+                "Pizza", "Pizza2", "Pizza3", "Borda", "Bebida", "Observação", "Valor", "Quantidade", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jtSacola);
 
         lblNum_pedido.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -533,6 +541,11 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnMais1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMais1.setForeground(new java.awt.Color(255, 255, 255));
         btnMais1.setText("+");
+        btnMais1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMais1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1325,6 +1338,11 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             System.err.println("Error: " + e);
         }
     }//GEN-LAST:event_txtCod_produto3ActionPerformed
+
+    private void btnMais1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMais1ActionPerformed
+        // TODO add your handling code here:
+        ListarSacola();
+    }//GEN-LAST:event_btnMais1ActionPerformed
 
     /**
      * @param args the command line arguments
