@@ -256,13 +256,7 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="cbxTamanho" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
-                                                  <Component id="lblQuantidade" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="txtQuantidade" min="-2" pref="68" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="cbxTamanho" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="cbxDivisao" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -279,7 +273,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jScrollPane2" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="lblCodItem1" min="-2" max="-2" attributes="0"/>
@@ -337,15 +331,19 @@
                                           <Component id="txtValor3" min="-2" pref="111" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblVFinal" min="-2" max="-2" attributes="0"/>
                                       <Component id="rbtPromo" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblQuantidade" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtQuantidade" min="-2" pref="68" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -416,8 +414,8 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane2" pref="138" max="32767" attributes="0"/>
-                                  <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="146" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -436,14 +434,9 @@
                                       <Component id="cbxDivisao" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="cbxBorda" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtQuantidade" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="cbxTamanho" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="cbxTamanho" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="25" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -452,10 +445,9 @@
                               <Component id="txtPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="167" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCodItem1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCod_produto1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
@@ -464,37 +456,32 @@
                       <Component id="lblvalor1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtValor1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="lblVFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtVFinal" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="txtVFinal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="btnLimpar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblProduto2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtProduto2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="lblCodItem2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCod_produto2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="lblvalor2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtValor2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtProduto3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="lblProduto3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblCodItem3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCod_produto3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="lblvalor3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtValor3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="rbtPromo" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblProduto2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtProduto2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblCodItem2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCod_produto2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblvalor2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtValor2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtQuantidade" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtProduto3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblProduto3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCodItem3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCod_produto3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblvalor3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtValor3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="rbtPromo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnMenos" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="btnMais1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -510,7 +497,7 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="206" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="207" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelaPedido" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -555,6 +542,9 @@
         <Component class="javax.swing.JTextField" name="txtProduto1">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNomeCliente">
@@ -582,6 +572,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtQuantidade">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnIrPagmento">
           <Properties>
@@ -615,9 +610,17 @@
         <Component class="javax.swing.JTextField" name="txtValor1">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCod_produto1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_produto1ActionPerformed"/>
           </Events>
@@ -666,12 +669,13 @@
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="0">
-                    <Column editable="false" title="Pizza" type="java.lang.Object"/>
-                    <Column editable="false" title="Pizza2" type="java.lang.Object"/>
-                    <Column editable="false" title="Pizza3" type="java.lang.Object"/>
+                  <Table columnCount="10" rowCount="0">
+                    <Column editable="false" title="Parte 1" type="java.lang.Object"/>
+                    <Column editable="false" title="Parte 2" type="java.lang.Object"/>
+                    <Column editable="false" title="Parte 3" type="java.lang.Object"/>
                     <Column editable="false" title="Borda" type="java.lang.Object"/>
-                    <Column editable="true" title="Bebida" type="java.lang.Object"/>
+                    <Column editable="false" title="Tamanho" type="java.lang.Object"/>
+                    <Column editable="false" title="Bebida" type="java.lang.Object"/>
                     <Column editable="false" title="Observa&#xe7;&#xe3;o" type="java.lang.Object"/>
                     <Column editable="false" title="Valor" type="java.lang.Object"/>
                     <Column editable="false" title="Quantidade" type="java.lang.Object"/>
@@ -680,6 +684,11 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -775,10 +784,10 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
-                    <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
-                    <Column editable="true" title="Nome do produto" type="java.lang.Object"/>
-                    <Column editable="true" title="Valor" type="java.lang.Object"/>
-                    <Column editable="true" title="Valor Broto" type="java.lang.Object"/>
+                    <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
+                    <Column editable="false" title="Nome do produto" type="java.lang.Object"/>
+                    <Column editable="false" title="Valor" type="java.lang.Object"/>
+                    <Column editable="false" title="Valor Broto" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -883,6 +892,9 @@
         <Component class="javax.swing.JTextField" name="txtProduto2">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbxDivisao">
@@ -916,6 +928,9 @@
         <Component class="javax.swing.JTextField" name="txtProduto3">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCodItem2">
@@ -927,6 +942,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCod_produto2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_produto2ActionPerformed"/>
           </Events>
@@ -940,6 +960,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCod_produto3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_produto3ActionPerformed"/>
           </Events>
@@ -955,6 +980,9 @@
         <Component class="javax.swing.JTextField" name="txtValor2">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblvalor3">
@@ -968,6 +996,9 @@
         <Component class="javax.swing.JTextField" name="txtValor3">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblVFinal">
@@ -981,6 +1012,9 @@
         <Component class="javax.swing.JTextField" name="txtVFinal">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbxBorda">
@@ -1018,6 +1052,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtObs">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtPromo">
           <Properties>
