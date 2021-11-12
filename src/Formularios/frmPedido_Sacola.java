@@ -23,6 +23,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
     public Connection con;
     public Statement st;
     public ResultSet rs;
+    public String id1= null, id2= null, id3= null, idb= null, qtd= null, borda= null, obs= null, tamanho= null, valorf= null;
 
     float vFinal = 0;
 
@@ -153,6 +154,27 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 
                 valorF = qtd * valor;
 
+                if(pizza == null){
+                 pizza = "-"  ; 
+                }
+                if(pizza2 == null){
+                 pizza2 = "-"  ; 
+                }
+                if(pizza3 == null){
+                 pizza3 = "-"  ; 
+                }
+                if(bebida == null){
+                 bebida = "-"  ; 
+                }
+                if(obs == null){
+                 obs = "-"  ; 
+                }
+                if(tamanho == null){
+                 tamanho = "-"  ; 
+                }
+                if(borda == null){
+                 borda = "-"  ; 
+                }
                 modelo.addRow(new Object[]{pizza, pizza2, pizza3, borda , tamanho, bebida, obs, valor, qtd, valorF});
 
             }
@@ -400,6 +422,11 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnMenos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMenos.setForeground(new java.awt.Color(255, 255, 255));
         btnMenos.setText("-");
+        btnMenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenosActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setBackground(new java.awt.Color(0, 153, 51));
         btnLimpar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -426,6 +453,11 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jtSacola.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtSacolaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jtSacola);
@@ -1399,6 +1431,182 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos");
         }
     }//GEN-LAST:event_btnMais1ActionPerformed
+
+    private void jtSacolaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtSacolaMouseClicked
+        // TODO add your handling code here:
+        try{
+        if(jtSacola.getValueAt(jtSacola.getSelectedRow(), 0).toString().equals("-")){
+            id1 = null;
+        }else{
+            id1 =(jtSacola.getValueAt(jtSacola.getSelectedRow(), 0).toString());
+        }
+        if(jtSacola.getValueAt(jtSacola.getSelectedRow(), 1).toString().equals("-")){
+            id2 = null;
+        }else{
+            id2 =(jtSacola.getValueAt(jtSacola.getSelectedRow(), 1).toString());
+        }
+        if(jtSacola.getValueAt(jtSacola.getSelectedRow(), 2).toString().equals("-")){
+            id3 = null;
+        }else{
+            id3 =(jtSacola.getValueAt(jtSacola.getSelectedRow(), 2).toString());
+        }
+        if(jtSacola.getValueAt(jtSacola.getSelectedRow(), 3).toString().equals("-")){
+            borda = null;
+        }else{
+            borda =(jtSacola.getValueAt(jtSacola.getSelectedRow(), 3).toString());
+        }
+        if(jtSacola.getValueAt(jtSacola.getSelectedRow(), 4).toString().equals("-")){
+            tamanho = null;
+        }else{
+            tamanho =(jtSacola.getValueAt(jtSacola.getSelectedRow(), 4).toString());
+        }
+        if(jtSacola.getValueAt(jtSacola.getSelectedRow(), 5).toString().equals("-")){
+            idb = null;
+        }else{
+            idb =(jtSacola.getValueAt(jtSacola.getSelectedRow(), 5).toString());
+        }
+        if(jtSacola.getValueAt(jtSacola.getSelectedRow(), 6).toString().equals("-")){
+            obs = null;
+        }else{
+            obs =(jtSacola.getValueAt(jtSacola.getSelectedRow(), 6).toString());
+        }
+        valorf = (jtSacola.getValueAt(jtSacola.getSelectedRow(), 7).toString());
+        qtd = (jtSacola.getValueAt(jtSacola.getSelectedRow(), 8).toString());
+        }catch (NullPointerException e) {
+            System.err.println("Error: "+e);
+            
+        }
+        
+        try {
+            if(id1 != null){
+            String sql = "SELECT id FROM pizza WHERE nome = '"+id1+"'"; 
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                id1 = (rs.getString("id"));     
+            
+            }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        
+        try {
+            
+            if(id2 != null){
+            String sql = "SELECT id FROM pizza WHERE nome = '"+id2+"'"; 
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                id2 = (rs.getString("id"));     
+            
+            }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        try {
+            
+            if(id3 != null){
+            String sql = "SELECT id FROM pizza WHERE nome = '"+id3+"'"; 
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                id3 = (rs.getString("id"));     
+            
+            }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        try {
+            
+            if(idb != null){
+            String sql = "SELECT id FROM bebida WHERE nome = '"+idb+"'"; 
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                
+                idb = (rs.getString("id"));     
+            
+            }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        System.out.println(id1);
+        System.out.println(id2);
+        System.out.println(id3);
+        System.out.println(borda);
+        System.out.println(idb);
+        System.out.println(tamanho);
+        System.out.println(obs);
+        System.out.println(qtd);
+        System.out.println(valorf);
+    }//GEN-LAST:event_jtSacolaMouseClicked
+
+    private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(id1 != null && id2 == null && id3 == null && idb == null){
+            String sql = "delete  from aux_item " +
+                            "where id_pizza = "+id1+" " +
+                            "and qtd = "+qtd+" " +
+                            "and borda = '"+borda+"' " +
+                            "and tamanho = '"+tamanho+"' " +
+                            "and valorf = "+valorf;
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Item Retirado");
+            }else if(id1 != null && id2 != null && id3 == null && idb == null){
+                String sql = "delete  from aux_item " +
+                            "where id_pizza = "+id1+" " +
+                            "and id_pizza2 = "+id2+" " +
+                            "and qtd = "+qtd+" " +
+                            "and borda = '"+borda+"' " +
+                            "and tamanho = '"+tamanho+"' " +
+                            "and valorf = "+valorf;
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Item Retirado");
+            }else if(id1 != null && id2 != null && id3 != null && idb == null){
+                String sql = "delete  from aux_item " +
+                            "where id_pizza = "+id1+" " +
+                            "and id_pizza2 = "+id2+" " +
+                            "and id_pizza3 = "+id3+" " +
+                            "and qtd = "+qtd+" " +
+                            "and borda = '"+borda+"' " +
+                            "and tamanho = '"+tamanho+"' " +
+                            "and valorf = "+valorf;
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Item Retirado");
+            }else if(id1 == null && id2 == null && id3 == null && idb != null){
+                String sql = "delete  from aux_item " +
+                            "where id_bebida = "+idb+" " +
+                            "and qtd = "+qtd+" " +
+                            "and valorf = "+valorf;
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Item Retirado");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            
+            JOptionPane.showMessageDialog(null, "Erro para retirar o pedido");
+        }
+        
+        
+        id1 = null;
+        id2 = null;
+        id3 = null;
+        borda = null;
+        tamanho = null;
+        idb = null;
+        obs = null;
+        valorf = null;
+        qtd = null;
+        ListarSacola();
+    }//GEN-LAST:event_btnMenosActionPerformed
 
     /**
      * @param args the command line arguments
