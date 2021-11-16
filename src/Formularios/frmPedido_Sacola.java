@@ -1130,64 +1130,57 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
     private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
         // TODO add your handling code here:
-        /* if("Pizzas".equals(cbxProduto.getSelectedItem().toString())){
+         
+        if ("Pizzas".equals(cbxProduto.getSelectedItem().toString())) {
             try {
-                int n = 0;
-
-                String sql = "SELECT * FROM pizza WHERE nome = '"+txtPesquisa.getText()+"'"
-                +" OR id = '"+txtPesquisa.getText()+"'";
-
-                rs = st.executeQuery(sql);
-                while (rs.next()){
-
-                    String codigo = (rs.getString("id"));
-                    String nome = (rs.getString("nome"));
-                    String valor = (rs.getString("valor"));
-                    String valorbroto = (rs.getString("valorbroto"));
-                    String tipo = (rs.getString("tipo"));
-                    String descricao = (rs.getString("descricao"));
-
-                    txtNome.setText(nome);
-                    txtValor.setText(valor);
-                    txtValor2.setText(valorbroto);
-                    txtDescricao.setText(descricao);
-
-                    switch(tipo){
-
-                        case "Salgada":
-                        n = 0;
-                        break;
-                        case "Doce":
-                        n=1;
-                        break;
-                    }
-                    cbxTipo.setSelectedIndex(n);
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error: "+e);
+             
+            DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+           modelo.setNumRows(0);
+           
+            
+            String sql = "SELECT * FROM pizza WHERE id LIKE '%"+txtPesquisa.getText()+"%'"
+                    +" OR nome LIKE '%"+txtPesquisa.getText()+"%'";
+            
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                 
+                
+                String id = (rs.getString("id"));
+                String nome = (rs.getString("nome"));
+                String valor = (rs.getString("valor"));
+                String valorbroto = (rs.getString("valorbroto"));
+                
+                modelo.addRow(new Object[]{id,nome,valor,valorbroto});      
+            
             }
-        }else{
+            
+             }
+         catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        } else {
             try {
+                DefaultTableModel modelo = (DefaultTableModel) jtPizza.getModel();
+                modelo.setNumRows(0);
 
-                String sql = "SELECT * FROM bebida WHERE nome = '"+txtPesquisa.getText()+"'"
-                +" OR id = '"+txtPesquisa.getText()+"'";
+                String sql = "SELECT * FROM bebida WHERE nome LIKE '%" + txtPesquisa.getText() + "%'"
+                        + " OR id LIKE '%" + txtPesquisa.getText() + "%'";
 
                 rs = st.executeQuery(sql);
-                while (rs.next()){
+                while (rs.next()) {
 
                     String codigo = (rs.getString("id"));
                     String nome = (rs.getString("nome"));
                     String valor = (rs.getString("valor"));
 
-                    txtNome.setText(nome);
-                    txtValor.setText(valor);
+                    modelo.addRow(new Object[]{codigo, nome, valor});
+
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error: "+e);
+                System.err.println("Error: " + e);
             }
-        }*/
+        }
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
     private void cbxTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTamanhoActionPerformed
