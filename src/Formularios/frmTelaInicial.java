@@ -223,7 +223,9 @@ public class frmTelaInicial extends javax.swing.JFrame {
 
     private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
         // TODO add your handling code here:
-        
+        frmRelatorio_Periodo tela = new frmRelatorio_Periodo();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblRelatoriosMouseClicked
 
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
