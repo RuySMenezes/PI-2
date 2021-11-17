@@ -40,7 +40,10 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "não, Conectado");
         }
-        
+        txtTelefone.setText("");
+        txtNome.setText("");
+        nome="";
+        telefone="";
     }
 
     /**
@@ -491,7 +494,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor Insira os dados do cliente");
         }else{
             nome = txtNome.getText();
-            telefone = txtBairro.getText();
+            telefone = txtTelefone.getText();
             
             frmPedido_Sacola tela = new frmPedido_Sacola();
             tela.setVisible(true);
