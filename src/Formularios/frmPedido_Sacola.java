@@ -1189,10 +1189,9 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
     private void cbxTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTamanhoActionPerformed
         // TODO add your handling code here:
-        if (txtCod_produto1.getText().equals("")) {
-        } else {
+        
             try {
-                System.out.println(txtCod_produto1.getText());
+                
                 String sql = "SELECT valor, valorbroto FROM pizza WHERE id = " + txtCod_produto1.getText() + "";
 
                 rs = st.executeQuery(sql);
@@ -1207,12 +1206,51 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                         txtValor1.setText(valor2);
                     }
                 }
+                sql = "SELECT valor, valorbroto FROM pizza WHERE id = " + txtCod_produto2.getText() + "";
+
+                rs = st.executeQuery(sql);
+                while (rs.next()) {
+
+                    String valor = (rs.getString("valor"));
+                    String valor2 = (rs.getString("valorbroto"));
+
+                    if (cbxTamanho.getSelectedItem().equals("Grande")) {
+                        txtValor2.setText(valor);
+                    } else {
+                        txtValor2.setText(valor2);
+                    }
+                }
+                sql = "SELECT valor, valorbroto FROM pizza WHERE id = " + txtCod_produto3.getText() + "";
+
+                rs = st.executeQuery(sql);
+                while (rs.next()) {
+
+                    String valor = (rs.getString("valor"));
+                    String valor2 = (rs.getString("valorbroto"));
+
+                    if (cbxTamanho.getSelectedItem().equals("Grande")) {
+                        txtValor3.setText(valor);
+                    } else {
+                        txtValor3.setText(valor2);
+                    }
+                }
+                
+                if (Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor2.getText()) && Float.parseFloat(txtValor1.getText()) > Float.parseFloat(txtValor3.getText())) {
+                vFinal = Float.parseFloat(txtValor1.getText());
+                txtVFinal.setText("" + vFinal);
+            }else if (Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor1.getText()) && Float.parseFloat(txtValor2.getText()) > Float.parseFloat(txtValor3.getText())) {
+                vFinal = Float.parseFloat(txtValor2.getText());
+                txtVFinal.setText("" + vFinal);
+            }else if (Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor2.getText()) && Float.parseFloat(txtValor3.getText()) > Float.parseFloat(txtValor1.getText())) {
+                vFinal = Float.parseFloat(txtValor3.getText());
+                txtVFinal.setText("" + vFinal);
+            }
 
             } catch (SQLException e) {
                 System.err.println("Error: " + e);
             }
 
-        }
+        
 
     }//GEN-LAST:event_cbxTamanhoActionPerformed
 

@@ -193,7 +193,15 @@ public class frmCad_Endereco extends javax.swing.JFrame {
             new String [] {
                 "CEP", "Bairro", "Endereço", "Taxa"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jtEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtEnderecoMouseClicked(evt);

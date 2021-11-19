@@ -218,7 +218,7 @@
                   <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="CODIGO" type="java.lang.Object"/>
                     <Column editable="false" title="CLIENTE" type="java.lang.Object"/>
-                    <Column editable="true" title="DATA" type="java.lang.Object"/>
+                    <Column editable="false" title="DATA" type="java.lang.Object"/>
                     <Column editable="false" title="VALOR" type="java.lang.Object"/>
                     <Column editable="false" title="PAGAMENTO" type="java.lang.Object"/>
                   </Table>

@@ -110,7 +110,15 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
             new String [] {
                 "Nome", "Telefone", "CEP", "Bairro", "Endereço", "Número", "Complemento", "Obs", "Taxa"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jtEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtEnderecoMouseClicked(evt);
