@@ -650,10 +650,16 @@ public class frmCad_Cliente extends javax.swing.JFrame {
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
+        frmRelatorio_Periodo tela = new frmRelatorio_Periodo();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
         // TODO add your handling code here:
+        frmRelatorio tela = new frmRelatorio();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblRelatoriosMouseClicked
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked

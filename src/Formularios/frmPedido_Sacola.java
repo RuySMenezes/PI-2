@@ -849,6 +849,9 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
     private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
         // TODO add your handling code here:
+        frmRelatorio tela = new frmRelatorio();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblRelatoriosMouseClicked
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked

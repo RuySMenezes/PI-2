@@ -47,6 +47,12 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtdataFinal = new javax.swing.JFormattedTextField();
         btnPesquisar = new javax.swing.JButton();
+        lblvalor = new javax.swing.JLabel();
+        lblCredito = new javax.swing.JLabel();
+        lblDebito = new javax.swing.JLabel();
+        lblDinheiro = new javax.swing.JLabel();
+        lblValeA = new javax.swing.JLabel();
+        lblValeR = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         lblCardapio = new javax.swing.JLabel();
@@ -83,8 +89,10 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("RELATÓRIO DE VENDA POR PERIODO:");
 
+        jtRelatorio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jtRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -103,6 +111,7 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtRelatorio);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("PERÍODO:");
 
         try {
@@ -110,7 +119,9 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtdataInicial.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("ATÉ:");
 
         try {
@@ -118,6 +129,7 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtdataFinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         btnPesquisar.setBackground(new java.awt.Color(0, 153, 153));
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,31 +140,65 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
             }
         });
 
+        lblvalor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblvalor.setText("Valor total:");
+
+        lblCredito.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCredito.setText("Crédito:");
+
+        lblDebito.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblDebito.setText("Débito:");
+
+        lblDinheiro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblDinheiro.setText("Dinheiro:");
+
+        lblValeA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblValeA.setText("Vale Alimentação:");
+
+        lblValeR.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblValeR.setText("Vale Refeição:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(237, 237, 237)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 64, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblvalor)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblCredito)
+                        .addGap(107, 107, 107)
+                        .addComponent(lblDebito)
+                        .addGap(85, 85, 85)
+                        .addComponent(lblDinheiro)
+                        .addGap(106, 106, 106)
+                        .addComponent(lblValeA)
+                        .addGap(111, 111, 111)
+                        .addComponent(lblValeR)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,8 +212,17 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
                     .addComponent(txtdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 440, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblvalor)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCredito)
+                    .addComponent(lblDebito)
+                    .addComponent(lblDinheiro)
+                    .addComponent(lblValeA)
+                    .addComponent(lblValeR))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
 
@@ -262,12 +317,12 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(4, 4, 4))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,10 +330,8 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -290,6 +343,7 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
             modelo.setNumRows(0);
             
             String dtInicial[], dtFinal[];
+            int valorTotal = 0, credito=0, debito=0, valeA=0, valeR=0, dinheiro=0;
             dtInicial = txtdataInicial.getText().split("/");
             dtFinal = txtdataFinal.getText().split("/");
             
@@ -303,13 +357,33 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
                 String id=(rs.getString("P.id"));
                 String nome=(rs.getString("C.nome"));
                 String data[]=(rs.getString("P.datap")).split("-");
-                String valor=(rs.getString("P.valorF"));
+                int valor=(rs.getInt("P.valorF"));
                 String pagamento=(rs.getString("P.pagamento"));
                 String dataF = data[2]+"/"+data[1]+"/"+data[0];
                 
-                modelo.addRow(new Object[]{id,nome,dataF,valor,pagamento});
+                if(pagamento.equals("Crédito")){
+                    credito+= valor;
+                }else if(pagamento.equals("Débito")){
+                    debito+= valor;
+                }else if(pagamento.equals("Vale alimentação")){
+                    valeA+= valor;
+                }else if(pagamento.equals("Vale Refeição")){
+                    valeR+= valor;
+                }else if(pagamento.equals("Dinheiro")){
+                    dinheiro+= valor;
+                }
+                
+                valorTotal += valor;
+                
+                modelo.addRow(new Object[]{id,nome,dataF,"R$ "+valor+",00",pagamento});
                 
             }
+            lblvalor.setText("Valor total: R$ "+valorTotal+",00");
+            lblCredito.setText("Crédito: R$ "+credito+",00");
+            lblDebito.setText("Débito: R$ "+debito+",00");
+            lblDinheiro.setText("Dinheiro: R$ "+dinheiro+",00");
+            lblValeA.setText("Vale alimentação: R$ "+valeA+",00");
+            lblValeR.setText("Vale refeição: R$ "+valeR+",00");
             JOptionPane.showMessageDialog(null, "Executado com sucesso");
         }catch(Exception erro){
             System.out.println(erro);
@@ -348,6 +422,9 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
 
     private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
         // TODO add your handling code here:
+        frmRelatorio tela = new frmRelatorio();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblRelatoriosMouseClicked
 
     /**
@@ -403,9 +480,15 @@ public class frmRelatorio_Periodo extends javax.swing.JFrame {
     private javax.swing.JTable jtRelatorio;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCardapio;
+    private javax.swing.JLabel lblCredito;
+    private javax.swing.JLabel lblDebito;
+    private javax.swing.JLabel lblDinheiro;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblPedidos;
     private javax.swing.JLabel lblRelatorios;
+    private javax.swing.JLabel lblValeA;
+    private javax.swing.JLabel lblValeR;
+    private javax.swing.JLabel lblvalor;
     private javax.swing.JFormattedTextField txtdataFinal;
     private javax.swing.JFormattedTextField txtdataInicial;
     // End of variables declaration//GEN-END:variables

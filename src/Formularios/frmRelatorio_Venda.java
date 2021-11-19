@@ -10,13 +10,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
+public class frmRelatorio_Venda extends javax.swing.JFrame {
 
         public Connection con;
         public Statement st;
         public ResultSet rs;
         
-    public frmRelatorio_VendaPizza() {
+    public frmRelatorio_Venda() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         try{
@@ -40,13 +40,12 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         txtCodVenda = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtRelatorio = new javax.swing.JTable();
         btnPesquisar = new javax.swing.JButton();
+        lblValorT = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         lblCardapio = new javax.swing.JLabel();
@@ -71,7 +70,7 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(1066, 1066, 1066)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,15 +82,15 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("RELATÓRIO DE VENDA");
 
-        jLabel6.setText("TOTAL VENDIDO NO PERÍODO SELECIONADO:");
-
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Código da Venda:");
 
-        jtRelatorio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodVenda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jtRelatorio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jtRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -111,6 +110,7 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jtRelatorio);
 
         btnPesquisar.setBackground(new java.awt.Color(0, 153, 153));
+        btnPesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,32 +119,32 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
             }
         });
 
+        lblValorT.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblValorT.setText("Valor total da venda: ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 1314, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblValorT))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -157,12 +157,10 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
                     .addComponent(txtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                .addGap(116, 116, 116)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblValorT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
 
@@ -259,9 +257,8 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -271,8 +268,7 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -308,13 +304,17 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
 
     private void lblRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRelatoriosMouseClicked
         // TODO add your handling code here:
+        frmRelatorio tela = new frmRelatorio();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblRelatoriosMouseClicked
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         try {
             DefaultTableModel modelo = (DefaultTableModel) jtRelatorio.getModel();
             modelo.setNumRows(0);
-
+            float vTotal = 0;
+            
             String sql = "select x.nome, y.nome, z.nome, I.borda, B.nome, I.obs, I.valorf, I.qtd, I.tamanho from item_pedido as I " +
                         "left join bebida as B on I.id_bebida = B.id " +
                         "left join pizza as X on I.id_pizza = X.id " +
@@ -330,11 +330,11 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
                 String pizza2 = (rs.getString("Y.nome"));
                 String pizza3 = (rs.getString("Z.nome"));
                 String bebida = (rs.getString("B.nome"));
-                int qtd = (rs.getInt("qtd"));
-                String borda = (rs.getString("borda"));
-                String obs = (rs.getString("obs"));
-                float valor = (rs.getFloat("valorf"));
-                String tamanho = (rs.getString("tamanho"));
+                int qtd = (rs.getInt("I.qtd"));
+                String borda = (rs.getString("I.borda"));
+                String obs = (rs.getString("I.obs"));
+                float valor = (rs.getFloat("I.valorf"));
+                String tamanho = (rs.getString("I.tamanho"));
                 float total = 0;
                 
                 valorF = qtd * valor;
@@ -352,21 +352,22 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
                 if(bebida == null){
                  bebida = "-"  ; 
                 }
-                if(obs == null){
+                if(obs.equals("null")){
                  obs = "-"  ; 
                 }
-                if(tamanho == null){
+                if(tamanho.equals("null")){
                  tamanho = "-"  ; 
                 }
-                if(borda == null){
+                if(borda.equals("null")){
                  borda = "-"  ; 
                 }
-                modelo.addRow(new Object[]{pizza, pizza2, pizza3, borda , tamanho, bebida, obs, valor, qtd, valorF});
-
+                modelo.addRow(new Object[]{pizza, pizza2, pizza3, borda , tamanho, bebida, obs, "R$ "+valor+"0", qtd, "R$ "+valorF+"0"});
+                
+                vTotal+= total;
                 
             }
 
-           
+           lblValorT.setText("Valor total da venda: R$ "+vTotal+"0");
         } catch (SQLException e) {
             System.err.println("Error: " + e);
         }
@@ -389,20 +390,21 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmRelatorio_VendaPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRelatorio_Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmRelatorio_VendaPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRelatorio_Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmRelatorio_VendaPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRelatorio_Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmRelatorio_VendaPizza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRelatorio_Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmRelatorio_VendaPizza().setVisible(true);
+                new frmRelatorio_Venda().setVisible(true);
             }
         });
     }
@@ -410,12 +412,10 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -426,6 +426,7 @@ public class frmRelatorio_VendaPizza extends javax.swing.JFrame {
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblPedidos;
     private javax.swing.JLabel lblRelatorios;
+    private javax.swing.JLabel lblValorT;
     private javax.swing.JTextField txtCodVenda;
     // End of variables declaration//GEN-END:variables
 }
