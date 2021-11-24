@@ -204,7 +204,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         lblMenu = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblControlPedidos = new javax.swing.JLabel();
-        lblCliente = new javax.swing.JLabel();
         lblCodItem1 = new javax.swing.JLabel();
         txtProduto1 = new javax.swing.JTextField();
         lblNomeCliente = new javax.swing.JLabel();
@@ -219,7 +218,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtSacola = new javax.swing.JTable();
-        lblNum_pedido = new javax.swing.JLabel();
         lblProduto1 = new javax.swing.JLabel();
         lblvalor1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -246,7 +244,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         cbxBorda = new javax.swing.JComboBox<>();
         lblObs = new javax.swing.JLabel();
         txtObs = new javax.swing.JTextField();
-        rbtPromo = new javax.swing.JRadioButton();
         btnMais1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -369,10 +366,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         lblControlPedidos.setForeground(new java.awt.Color(0, 153, 153));
         lblControlPedidos.setText("CONTROLE DE PEDIDOS:");
 
-        lblCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblCliente.setForeground(new java.awt.Color(0, 153, 153));
-        lblCliente.setText("PEDIDO:");
-
         lblCodItem1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblCodItem1.setText("Código Item:");
 
@@ -462,10 +455,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jtSacola);
-
-        lblNum_pedido.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblNum_pedido.setForeground(new java.awt.Color(204, 51, 0));
-        lblNum_pedido.setText("1");
 
         lblProduto1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProduto1.setText("Produto:");
@@ -594,9 +583,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
 
         txtObs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        rbtPromo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        rbtPromo.setText("Item Promocional");
-
         btnMais1.setBackground(new java.awt.Color(0, 153, 51));
         btnMais1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMais1.setForeground(new java.awt.Color(255, 255, 255));
@@ -683,7 +669,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblVFinal)
-                                    .addComponent(rbtPromo)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblQuantidade)
                                         .addGap(18, 18, 18)
@@ -709,15 +694,8 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                         .addGap(905, 905, 905)
                         .addComponent(txtVFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(lblCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNum_pedido))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblNomeCliente)))
+                        .addContainerGap()
+                        .addComponent(lblNomeCliente)
                         .addGap(249, 249, 249)
                         .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -737,10 +715,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCliente)
-                            .addComponent(lblNum_pedido))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
@@ -792,8 +767,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                     .addComponent(lblCodItem3)
                     .addComponent(txtCod_produto3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblvalor3)
-                    .addComponent(txtValor3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbtPromo))
+                    .addComponent(txtValor3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
@@ -1702,14 +1676,12 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
     private javax.swing.JTable jtSacola;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCardapio;
-    private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblCodItem1;
     private javax.swing.JLabel lblCodItem2;
     private javax.swing.JLabel lblCodItem3;
     private javax.swing.JLabel lblControlPedidos;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblNomeCliente;
-    private javax.swing.JLabel lblNum_pedido;
     private javax.swing.JLabel lblObs;
     private javax.swing.JLabel lblPedidos;
     private javax.swing.JLabel lblProduto1;
@@ -1721,7 +1693,6 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
     private javax.swing.JLabel lblvalor1;
     private javax.swing.JLabel lblvalor2;
     private javax.swing.JLabel lblvalor3;
-    private javax.swing.JRadioButton rbtPromo;
     private javax.swing.JTextField txtCod_produto1;
     private javax.swing.JTextField txtCod_produto2;
     private javax.swing.JTextField txtCod_produto3;

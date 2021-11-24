@@ -14,7 +14,7 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
 
     
         public Connection con;
-        public Statement st, st2, st3;
+        public Statement st, st2, st3, st4;
         public ResultSet rs;
         public float total = 0, tax = 0, vfinal =0 ;
         
@@ -627,6 +627,7 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
 
             st2 = (Statement) con.createStatement();
             st3 = (Statement) con.createStatement();
+            st4 = (Statement) con.createStatement();
             
             String telefone, valorf, pagamento;
             telefone = frmPedido_Cliente.telefone;
@@ -668,11 +669,22 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
                 sql = "delete from aux_item " +
                             "where id = "+id;
                 st3.executeUpdate(sql);
+      
                 
             }
+            int id = 0;
+            sql = "select id from pedido order by id desc";
+                rs = st4.executeQuery(sql);
+                while (rs.next()){
+                    
+                id = (rs.getInt("id"));
+                break;
+                
+                }
             st2.close();
             st3.close();
-            JOptionPane.showMessageDialog(null, "Pedido concluido");
+            st4.close();
+            JOptionPane.showMessageDialog(null, "Pedido "+id+" concluido");
             }catch(Exception e){
             System.out.println(e);
 
