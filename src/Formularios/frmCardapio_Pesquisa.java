@@ -346,11 +346,13 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNome.setText("Nome da Pizza:");
 
+        txtValor.setEditable(false);
         txtValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lblValor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblValor.setText("Valor:");
 
+        txtNome.setEditable(false);
         txtNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,6 +366,7 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         lblValor2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblValor2.setText("Valor da broto:");
 
+        txtValor2.setEditable(false);
         txtValor2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lblTipo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -372,6 +375,7 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salgada", "Doce" }));
 
+        txtDescricao.setEditable(false);
         jspDescricao.setViewportView(txtDescricao);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

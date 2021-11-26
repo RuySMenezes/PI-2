@@ -332,6 +332,7 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
         lblNomeCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNomeCliente.setText("Nome do Cliente:");
 
+        txtNomeCliente.setEditable(false);
         txtNomeCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblEndereco.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -340,20 +341,25 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
         lblCep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblCep.setText("Cep:");
 
+        txtCep.setEditable(false);
         txtCep.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblNumero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNumero.setText("Numero:");
 
+        txtNumero.setEditable(false);
         txtNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        txtCBairro.setEditable(false);
         txtCBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        txtEndereco.setEditable(false);
         txtEndereco.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblComplemento.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblComplemento.setText("Complemento:");
 
+        txtComplemento.setEditable(false);
         txtComplemento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -432,16 +438,19 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
         lblVlrPedido.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblVlrPedido.setText("Valor do pedido:");
 
+        txtCVlrPedido.setEditable(false);
         txtCVlrPedido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblTaxaEntrega.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTaxaEntrega.setText("Taxa de Entrega:");
 
+        txtTaxaEntrega.setEditable(false);
         txtTaxaEntrega.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblVlrTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblVlrTotal.setText("Valor Total:");
 
+        txtVlrTotal.setEditable(false);
         txtVlrTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblPagamento.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
