@@ -386,6 +386,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnIrPagmento.setBackground(new java.awt.Color(0, 153, 51));
         btnIrPagmento.setForeground(new java.awt.Color(255, 255, 255));
         btnIrPagmento.setText("Ir para Pagamento");
+        btnIrPagmento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIrPagmento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnIrPagmentoMouseClicked(evt);
@@ -396,6 +397,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnCancelaPedido.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelaPedido.setText("Cancelar Pedido");
         btnCancelaPedido.setToolTipText("");
+        btnCancelaPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelaPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelaPedidoActionPerformed(evt);
@@ -416,6 +418,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnMenos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMenos.setForeground(new java.awt.Color(255, 255, 255));
         btnMenos.setText("-");
+        btnMenos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenosActionPerformed(evt);
@@ -426,6 +429,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnLimpar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLimpar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpar.setText("Limpar");
+        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -503,6 +507,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnPesquisa.setBackground(new java.awt.Color(0, 153, 51));
         btnPesquisa.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisa.setText("PESQUISAR");
+        btnPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisaActionPerformed(evt);
@@ -587,6 +592,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
         btnMais1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMais1.setForeground(new java.awt.Color(255, 255, 255));
         btnMais1.setText("+");
+        btnMais1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMais1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMais1ActionPerformed(evt);
@@ -712,13 +718,12 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblControlPedidos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                                 .addGap(17, 17, 17))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -735,12 +740,12 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                                     .addComponent(cbxBorda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(12, 12, 12)
                                 .addComponent(cbxTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnPesquisa))
-                        .addGap(0, 167, Short.MAX_VALUE)))
+                        .addGap(0, 176, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodItem1)
                     .addComponent(txtCod_produto1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -781,7 +786,7 @@ public class frmPedido_Sacola extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addComponent(txtObs, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)

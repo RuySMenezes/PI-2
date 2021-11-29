@@ -462,6 +462,7 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
         btnCancelaPedido.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelaPedido.setText("Cancelar Pedido");
         btnCancelaPedido.setToolTipText("");
+        btnCancelaPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelaPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelaPedidoActionPerformed(evt);
@@ -471,6 +472,7 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
         btnIrPagmento.setBackground(new java.awt.Color(0, 153, 51));
         btnIrPagmento.setForeground(new java.awt.Color(255, 255, 255));
         btnIrPagmento.setText("Finalizar Pagamento");
+        btnIrPagmento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIrPagmento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIrPagmentoActionPerformed(evt);

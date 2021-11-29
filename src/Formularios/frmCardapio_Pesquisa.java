@@ -260,6 +260,7 @@ public class frmCardapio_Pesquisa extends javax.swing.JFrame {
         btnPesquisa.setBackground(new java.awt.Color(0, 153, 51));
         btnPesquisa.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisa.setText("PESQUISAR");
+        btnPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisaActionPerformed(evt);

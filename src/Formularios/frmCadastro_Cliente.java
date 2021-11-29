@@ -125,6 +125,7 @@ public class frmCadastro_Cliente extends javax.swing.JFrame {
         btnCadastrar.setBackground(new java.awt.Color(0, 153, 51));
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("CONCLUIR CADASTRO");
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -143,9 +144,10 @@ public class frmCadastro_Cliente extends javax.swing.JFrame {
             }
         });
 
-        btnLupa.setBackground(new java.awt.Color(0, 102, 204));
+        btnLupa.setBackground(new java.awt.Color(255, 255, 255));
         btnLupa.setForeground(new java.awt.Color(255, 255, 255));
-        btnLupa.setText("lupa");
+        btnLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        btnLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLupa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLupaActionPerformed(evt);

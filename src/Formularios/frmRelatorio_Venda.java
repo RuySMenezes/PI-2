@@ -96,11 +96,11 @@ public class frmRelatorio_Venda extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Parte 1", "Parte 2", "Parte 3", "Borda", "Tamanho", "Bebida", "Observação", "Valor", "Quantidade", "Total"
+                "Cliente", "Parte 1", "Parte 2", "Parte 3", "Borda", "Tamanho", "Bebida", "Observação", "Valor", "Quantidade", "Total", "Pagamento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -113,6 +113,7 @@ public class frmRelatorio_Venda extends javax.swing.JFrame {
         btnPesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -315,7 +316,9 @@ public class frmRelatorio_Venda extends javax.swing.JFrame {
             modelo.setNumRows(0);
             float vTotal = 0;
             
-            String sql = "select x.nome, y.nome, z.nome, I.borda, B.nome, I.obs, I.valorf, I.qtd, I.tamanho from item_pedido as I " +
+            String sql = "select C.nome, x.nome, y.nome, z.nome, I.borda, B.nome, I.obs, I.valorf, I.qtd, I.tamanho, P.pagamento from item_pedido as I " +
+                        "left join pedido as P on I.id_pedido = P.id "+
+                        "left join cliente as C on P.telefone_c = C.telefone "+
                         "left join bebida as B on I.id_bebida = B.id " +
                         "left join pizza as X on I.id_pizza = X.id " +
                         "left join pizza as Y on I.id_pizza2 = Y.id " +
@@ -326,6 +329,7 @@ public class frmRelatorio_Venda extends javax.swing.JFrame {
             while (rs.next()) {
                 float valorF = 0;
 
+                String nome = (rs.getString("C.nome"));
                 String pizza = (rs.getString("X.nome"));
                 String pizza2 = (rs.getString("Y.nome"));
                 String pizza3 = (rs.getString("Z.nome"));
@@ -335,6 +339,7 @@ public class frmRelatorio_Venda extends javax.swing.JFrame {
                 String obs = (rs.getString("I.obs"));
                 float valor = (rs.getFloat("I.valorf"));
                 String tamanho = (rs.getString("I.tamanho"));
+                String pagamento = (rs.getString("P.pagamento"));
                 float total = 0;
                 
                 valorF = qtd * valor;
@@ -361,7 +366,7 @@ public class frmRelatorio_Venda extends javax.swing.JFrame {
                 if(borda.equals("null")){
                  borda = "-"  ; 
                 }
-                modelo.addRow(new Object[]{pizza, pizza2, pizza3, borda , tamanho, bebida, obs, "R$ "+valor+"0", qtd, "R$ "+valorF+"0"});
+                modelo.addRow(new Object[]{nome,pizza, pizza2, pizza3, borda , tamanho, bebida, obs, "R$ "+valor+"0", qtd, "R$ "+valorF+"0", pagamento});
                 
                 vTotal+= total;
                 

@@ -51,6 +51,7 @@ public class frmRelatorio extends javax.swing.JFrame {
         btnVenda.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnVenda.setForeground(new java.awt.Color(255, 255, 255));
         btnVenda.setText("Relatório por Venda");
+        btnVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVendaActionPerformed(evt);

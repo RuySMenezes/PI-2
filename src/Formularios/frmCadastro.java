@@ -165,6 +165,7 @@ public class frmCadastro extends javax.swing.JFrame {
         btnEndereco.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnEndereco.setForeground(new java.awt.Color(255, 255, 255));
         btnEndereco.setText("Endereço");
+        btnEndereco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnderecoActionPerformed(evt);
@@ -175,6 +176,7 @@ public class frmCadastro extends javax.swing.JFrame {
         btnProduto.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnProduto.setText("Produto");
+        btnProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProdutoActionPerformed(evt);

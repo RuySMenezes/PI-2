@@ -325,6 +325,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         btnBebida.setBackground(new java.awt.Color(0, 102, 204));
         btnBebida.setForeground(new java.awt.Color(255, 255, 255));
         btnBebida.setText("NOVA BEBIDA");
+        btnBebida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBebida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBebidaActionPerformed(evt);
@@ -345,6 +346,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         btnPizza.setBackground(new java.awt.Color(0, 102, 204));
         btnPizza.setForeground(new java.awt.Color(255, 255, 255));
         btnPizza.setText("NOVA PIZZA");
+        btnPizza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPizza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPizzaActionPerformed(evt);
@@ -448,6 +450,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         btnEditar.setBackground(new java.awt.Color(255, 153, 0));
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("EDITAR CADASTRO");
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -457,6 +460,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         btnCadastrar.setBackground(new java.awt.Color(0, 153, 51));
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("CONCLUIR CADASTRO");
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -466,6 +470,7 @@ public class frmCad_Produto extends javax.swing.JFrame {
         btnExcluir.setBackground(new java.awt.Color(204, 0, 0));
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("EXCLUIR CADASTRO");
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);

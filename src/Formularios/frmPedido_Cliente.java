@@ -265,6 +265,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnCad_Cliente.setBackground(new java.awt.Color(255, 153, 0));
         btnCad_Cliente.setForeground(new java.awt.Color(255, 255, 255));
         btnCad_Cliente.setText("CADASTRAR NOVO CLIENTE");
+        btnCad_Cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCad_Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCad_ClienteActionPerformed(evt);
@@ -275,6 +276,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnSacola.setForeground(new java.awt.Color(255, 255, 255));
         btnSacola.setText("CONTINUAR PARA PEDIDO");
         btnSacola.setActionCommand("IR PARA PEDIDO");
+        btnSacola.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSacola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSacolaActionPerformed(evt);
@@ -284,6 +286,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnCad_End.setBackground(new java.awt.Color(0, 102, 255));
         btnCad_End.setForeground(new java.awt.Color(255, 255, 255));
         btnCad_End.setText("CADASTRAR NOVO ENDEREÇO");
+        btnCad_End.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCad_End.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCad_EndActionPerformed(evt);
@@ -293,6 +296,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnLimpar.setBackground(new java.awt.Color(0, 153, 153));
         btnLimpar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpar.setText("Limpar");
+        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -302,6 +306,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnPesquisar.setBackground(new java.awt.Color(0, 153, 153));
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -333,6 +338,7 @@ public class frmPedido_Cliente extends javax.swing.JFrame {
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.setActionCommand("IR PARA PEDIDO");
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
