@@ -79,6 +79,7 @@ public class frmCadastro_Endereco extends javax.swing.JFrame {
             }
         });
 
+        txtCep.setEditable(false);
         try {
             txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
