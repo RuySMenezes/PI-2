@@ -216,8 +216,11 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
                 String endereco = (rs.getString("logradouro"));
                 String numero = (rs.getString("numero"));
                 String complemento = (rs.getString("complemento"));
+                String obs = (rs.getString("obs"));
+                String taxa = (rs.getString("taxa"));
+                
+                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento, obs, taxa});
 
-                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento});
 
             }
 
@@ -247,8 +250,10 @@ public class frmPesquisa_Cliente extends javax.swing.JFrame {
                 String endereco = (rs.getString("logradouro"));
                 String numero = (rs.getString("numero"));
                 String complemento = (rs.getString("complemento"));
-
-                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento});
+                String obs = (rs.getString("obs"));
+                String taxa = (rs.getString("taxa"));
+                
+                modelo.addRow(new Object[]{nome, telefone, cep, bairro, endereco, numero, complemento, obs, taxa});
 
             }
 
