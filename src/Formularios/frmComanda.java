@@ -55,7 +55,7 @@ public class frmComanda extends javax.swing.JFrame {
                                 "left join pizza as Y on I.id_pizza2 = Y.id " +
                                 "left join pizza as Z on I.id_pizza3 = Z.id " +
                                 "left join endereco as E on C.fk_cep_endereco = E.cep " +
-                                "where P.id = 1;";
+                                "where P.id = 2;";
             
             rs = st.executeQuery(sql);
             while (rs.next()){
