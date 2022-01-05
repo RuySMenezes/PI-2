@@ -92,23 +92,23 @@ public class frmComanda extends javax.swing.JFrame  {
                 if (pizza1 != null && pizza2 == null && pizza3 == null) {
 
                     if (obs != null || obs != "") {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n       " + pizza1 + "\n" + "Borda: " + borda + "\n" + "\n" + "OBS: " + obs + "\n");
+                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   " + pizza1 + "\n" + "Borda: " + borda + "\n" + "\n" + "OBS: " + obs + "\n");
                     } else {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n       " + pizza1 + "\n" + "Borda: " + borda + "\n");
+                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   " + pizza1 + "\n" + "Borda: " + borda + "\n");
                     }
                 } else if (pizza1 != null && pizza2 != null && pizza3 == null) {
 
                     if (obs != null || obs != "") {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n       1/2 " + pizza1 + "\n       1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n");
+                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/2 " + pizza1 + "\n   1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n");
                     } else {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n       1/2 " + pizza1 + "\n       1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n");
+                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/2 " + pizza1 + "\n   1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n");
                     }
                 } else if (pizza1 != null && pizza2 != null && pizza3 != null) {
 
                     if (obs != null || obs != "") {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n       1/3 " + pizza1 + "\n       1/3 " + pizza2 + "\n       1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n");
+                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/3 " + pizza1 + "\n   1/3 " + pizza2 + "\n   1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n");
                     } else {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n       1/3 " + pizza1 + "\n       1/3 " + pizza2 + "\n       1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n");
+                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/3 " + pizza1 + "\n   1/3 " + pizza2 + "\n   1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n");
                     }
 
                 } else if (pizza1 == null && pizza2 == null && pizza3 == null && bebida != null) {
@@ -151,20 +151,19 @@ public class frmComanda extends javax.swing.JFrame  {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnImprimir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(pNComanda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnImprimir)
-                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pNComanda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnImprimir)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(btnImprimir))
         );
 
         pack();
