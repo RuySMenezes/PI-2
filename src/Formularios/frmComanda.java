@@ -6,10 +6,6 @@
 package Formularios;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.Connection;
@@ -18,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -50,7 +45,6 @@ public class frmComanda extends javax.swing.JFrame  {
 
         try {
             float vTotal = 0;
-            int prod = 1;
 
             String sql = "select C.nome, x.nome, y.nome, z.nome, I.borda, B.nome, I.obs, I.valorf, I.qtd, I.tamanho, P.pagamento, E.taxa, E.logradouro, C.numero, E.cep from item_pedido as I "
                     + "left join pedido as P on I.id_pedido = P.id "
@@ -60,7 +54,7 @@ public class frmComanda extends javax.swing.JFrame  {
                     + "left join pizza as Y on I.id_pizza2 = Y.id "
                     + "left join pizza as Z on I.id_pizza3 = Z.id "
                     + "left join endereco as E on C.fk_cep_endereco = E.cep "
-                    + "where P.id = 1;";
+                    + "where P.id = " + frmPedido_Pagamento.id;
 
             rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -92,27 +86,28 @@ public class frmComanda extends javax.swing.JFrame  {
                 if (pizza1 != null && pizza2 == null && pizza3 == null) {
 
                     if (obs != null || obs != "") {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   " + pizza1 + "\n" + "Borda: " + borda + "\n" + "\n" + "OBS: " + obs + "\n");
+                        PNComanda.txtProduto.append(" " + qtd + " - " + tamanho + "\n   " + pizza1 + "\n" + "Borda: " + borda + "\n" + "\n" + "OBS: " + obs + "\n\n");
                     } else {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   " + pizza1 + "\n" + "Borda: " + borda + "\n");
+                        PNComanda.txtProduto.append(" " + qtd + " - " + tamanho + "\n   " + pizza1 + "\n" + "Borda: " + borda + "\n\n");
                     }
                 } else if (pizza1 != null && pizza2 != null && pizza3 == null) {
 
                     if (obs != null || obs != "") {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/2 " + pizza1 + "\n   1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n");
+                        PNComanda.txtProduto.append(" " + qtd + " - " + tamanho + "\n   1/2 " + pizza1 + "\n   1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n\n");
                     } else {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/2 " + pizza1 + "\n   1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n");
+                        PNComanda.txtProduto.append(" " + qtd + " - " + tamanho + "\n   1/2 " + pizza1 + "\n   1/2 " + pizza2 + "\n" + "Borda: " + borda + "\n\n");
                     }
                 } else if (pizza1 != null && pizza2 != null && pizza3 != null) {
 
                     if (obs != null || obs != "") {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/3 " + pizza1 + "\n   1/3 " + pizza2 + "\n   1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n");
+                        PNComanda.txtProduto.append(" " + qtd + " - " + tamanho + "\n   1/3 " + pizza1 + "\n   1/3 " + pizza2 + "\n   1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n" + "OBS: " + obs + "\n\n");
                     } else {
-                        PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n " + qtd + " - " + tamanho + "\n   1/3 " + pizza1 + "\n   1/3 " + pizza2 + "\n   1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n");
+                        PNComanda.txtProduto.append(" " + qtd + " - " + tamanho + "\n   1/3 " + pizza1 + "\n   1/3 " + pizza2 + "\n   1/3 " + pizza3 + "\n" + "Borda: " + borda + "\n\n");
                     }
 
                 } else if (pizza1 == null && pizza2 == null && pizza3 == null && bebida != null) {
-                    PNComanda.txtProduto.setText(PNComanda.txtProduto.getText() + "\n 1 - " + bebida + "\n");
+                    PNComanda.txtProduto.setRows(PNComanda.txtProduto.getLineCount()+6);
+                    PNComanda.txtProduto.append(" 1 - " + bebida + "\n\n");
                 } else {
 
                 }
@@ -133,11 +128,14 @@ public class frmComanda extends javax.swing.JFrame  {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnImprimir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         pNComanda1 = new Formularios.PNComanda();
+        btnImprimir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane1.setViewportView(pNComanda1);
 
         btnImprimir.setText("Imprimir");
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
@@ -150,20 +148,15 @@ public class frmComanda extends javax.swing.JFrame  {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnImprimir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pNComanda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnImprimir)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pNComanda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btnImprimir))
+                .addComponent(btnImprimir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,6 +214,7 @@ public class frmComanda extends javax.swing.JFrame  {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JScrollPane jScrollPane1;
     private Formularios.PNComanda pNComanda1;
     // End of variables declaration//GEN-END:variables
 

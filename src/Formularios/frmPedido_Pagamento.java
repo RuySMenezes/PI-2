@@ -17,6 +17,7 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
         public Statement st, st2, st3, st4;
         public ResultSet rs;
         public float total = 0, tax = 0, vfinal =0 ;
+        public static int id = 0;
         
     public frmPedido_Pagamento() {
         initComponents();
@@ -683,7 +684,6 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
       
                 
             }
-            int id = 0;
             sql = "select id from pedido order by id desc";
                 rs = st4.executeQuery(sql);
                 while (rs.next()){
@@ -707,7 +707,9 @@ public class frmPedido_Pagamento extends javax.swing.JFrame {
         frmTelaInicial tela = new frmTelaInicial();
         tela.setVisible(true);
         this.dispose();
-        
+        frmComanda comanda = new frmComanda();
+        comanda.setVisible(true);
+
     }//GEN-LAST:event_btnIrPagmentoActionPerformed
 
     /**
